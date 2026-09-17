@@ -1,0 +1,1823 @@
+<title>Painel Comercial Breathwork</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f4f6f5;
+    --page-plane:#eef1f0;
+    --surface:#ffffff;
+    --surface-2:#eef2f0;
+    --border:rgba(14,30,27,0.11);
+    --border-strong:rgba(14,30,27,0.18);
+    --text-primary:#0e1614;
+    --text-secondary:#48534f;
+    --text-muted:#828b87;
+    --accent:#135c42;
+    --accent-strong:#0d4732;
+    --accent-soft:#e2efe8;
+    --accent-soft-strong:#c7e2d3;
+    --logo-chip-bg:#fbfbfa;
+
+    --series-1:#2a78d6;
+    --series-1-soft:#cde2fb;
+    --series-2:#eb6834;
+    --series-3:#1baf7a;
+    --series-4:#eda100;
+    --series-5:#e87ba4;
+    --series-6:#008300;
+    --series-7:#4a3aa7;
+
+    --good:#0ca30c;
+    --good-soft:#e3f5e3;
+    --warning:#b9790a;
+    --warning-soft:#faf0da;
+    --critical:#d03b3b;
+    --critical-soft:#fbe4e4;
+
+    --track:#e6e9e7;
+    --shadow: 0 1px 2px rgba(14,30,27,0.04), 0 8px 24px -12px rgba(14,30,27,0.14);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0c110f;
+      --page-plane:#0a0e0d;
+      --surface:#141b19;
+      --surface-2:#182120;
+      --border:rgba(255,255,255,0.09);
+      --border-strong:rgba(255,255,255,0.16);
+      --text-primary:#f3f6f5;
+      --text-secondary:#c1ccc7;
+      --text-muted:#8a9490;
+      --accent:#4cb689;
+      --accent-strong:#63c99c;
+      --accent-soft:rgba(76,182,137,0.16);
+      --accent-soft-strong:rgba(76,182,137,0.26);
+      --logo-chip-bg:#f3f4f2;
+
+      --series-1:#3987e5;
+      --series-1-soft:rgba(57,135,229,0.18);
+      --series-2:#d95926;
+      --series-3:#199e70;
+      --series-4:#c98500;
+      --series-5:#d55181;
+      --series-6:#008300;
+      --series-7:#9085e9;
+
+      --good:#0ca30c;
+      --good-soft:rgba(12,163,12,0.16);
+      --warning:#fab219;
+      --warning-soft:rgba(250,178,25,0.16);
+      --critical:#e66767;
+      --critical-soft:rgba(230,103,103,0.16);
+
+      --track:#232b29;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0c110f;
+    --page-plane:#0a0e0d;
+    --surface:#141b19;
+    --surface-2:#182120;
+    --border:rgba(255,255,255,0.09);
+    --border-strong:rgba(255,255,255,0.16);
+    --text-primary:#f3f6f5;
+    --text-secondary:#c1ccc7;
+    --text-muted:#8a9490;
+    --accent:#4cb689;
+    --accent-strong:#63c99c;
+    --accent-soft:rgba(76,182,137,0.16);
+    --accent-soft-strong:rgba(76,182,137,0.26);
+    --logo-chip-bg:#f3f4f2;
+    --series-1:#3987e5;
+    --series-1-soft:rgba(57,135,229,0.18);
+    --series-2:#d95926;
+    --series-3:#199e70;
+    --series-4:#c98500;
+    --series-5:#d55181;
+    --series-6:#008300;
+    --series-7:#9085e9;
+    --good:#0ca30c;
+    --good-soft:rgba(12,163,12,0.16);
+    --warning:#fab219;
+    --warning-soft:rgba(250,178,25,0.16);
+    --critical:#e66767;
+    --critical-soft:rgba(230,103,103,0.16);
+    --track:#232b29;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+    color-scheme: dark;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--page-plane);
+    color:var(--text-primary);
+    font-family:'IBM Plex Sans', system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:1160px;
+    margin:0 auto;
+    padding: 28px 16px 64px;
+  }
+  h1,h2,h3{ font-family:'Manrope', system-ui, sans-serif; margin:0; letter-spacing:-0.01em; }
+  .num{ font-variant-numeric: tabular-nums; }
+
+  /* ---------- Header ---------- */
+  .topbar{
+    display:flex; justify-content:space-between; align-items:flex-end; gap:20px;
+    flex-wrap:wrap;
+    padding-bottom:20px; margin-bottom:24px;
+    border-bottom:1px solid var(--border);
+  }
+  .brand-logo{
+    display:inline-flex; align-items:center;
+    background:var(--logo-chip-bg); border:1px solid var(--border);
+    border-radius:9px; padding:7px 12px; margin-bottom:14px;
+    box-shadow:var(--shadow);
+  }
+  .brand-logo img{ display:block; height:26px; width:auto; }
+  .eyebrow{
+    font-size:11.5px; font-weight:600; letter-spacing:.09em; text-transform:uppercase;
+    color:var(--accent); margin:0 0 8px;
+  }
+  .topbar h1{ font-size:27px; font-weight:800; color:var(--text-primary); }
+  .topbar .sub{ font-size:13.5px; color:var(--text-secondary); margin-top:6px; max-width:56ch; }
+  .meta-box{
+    text-align:right; font-size:12.5px; color:var(--text-muted); line-height:1.6;
+  }
+  .meta-box b{ color:var(--text-primary); font-weight:600; }
+  .meta-owner{
+    font-size:11.5px; font-weight:600; letter-spacing:.03em; color:var(--accent);
+    text-transform:uppercase; margin-bottom:6px; padding-bottom:6px;
+    border-bottom:1px solid var(--border);
+  }
+  .meta-owner b{ color:var(--accent); text-transform:none; letter-spacing:0; font-weight:700; }
+
+  /* ---------- Section shell ---------- */
+  section{ margin-bottom:36px; }
+  .sec-head{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom:14px; flex-wrap:wrap;}
+  .sec-head h2{ font-size:17px; font-weight:700; }
+  .sec-note{ font-size:12px; color:var(--text-muted); }
+
+  /* ---------- KPI row ---------- */
+  .kpi-grid{
+    display:grid; grid-template-columns:repeat(6,1fr); gap:10px;
+  }
+  .kpi-tile{
+    background:var(--surface); border:1px solid var(--border); border-radius:12px;
+    padding:16px 16px 14px; box-shadow:var(--shadow);
+    display:flex; flex-direction:column; gap:6px; min-width:0;
+  }
+  .kpi-label{ font-size:11.5px; color:var(--text-muted); font-weight:500; }
+  .kpi-value{ font-size:25px; font-weight:800; font-family:'Manrope',sans-serif; line-height:1.05; }
+  .kpi-sub{ font-size:11.5px; color:var(--text-secondary); }
+  .kpi-tile.accent{ background:linear-gradient(155deg,var(--accent) 0%, var(--accent-strong) 100%); border-color:transparent;}
+  .kpi-tile.accent .kpi-label{ color:rgba(255,255,255,0.78);}
+  .kpi-tile.accent .kpi-value{ color:#fff;}
+  .kpi-tile.accent .kpi-sub{ color:rgba(255,255,255,0.82);}
+
+  /* ---------- Card ---------- */
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:14px;
+    box-shadow:var(--shadow); padding:20px;
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-2 > *{ min-width:0; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .grid-3 > *{ min-width:0; }
+
+  /* ---------- Funnel ---------- */
+  .funnel{ display:flex; flex-direction:column; gap:4px; }
+  .fstage{ display:grid; grid-template-columns:150px 1fr 118px; align-items:center; gap:14px; }
+  .fstage .flabel{ font-size:13px; font-weight:600; color:var(--text-primary); }
+  .fstage .flabel small{ display:block; font-weight:400; color:var(--text-muted); font-size:11px; margin-top:1px;}
+  .ftrack{ background:var(--track); border-radius:8px; height:34px; position:relative; overflow:hidden; }
+  .ffill{ height:100%; border-radius:8px 4px 4px 8px; display:flex; align-items:center; padding-left:12px;
+    color:#fff; font-weight:700; font-size:13px; font-family:'Manrope',sans-serif; white-space:nowrap; }
+  .fnums{ text-align:right; }
+  .fnums .cnt{ font-weight:700; font-size:15px; font-family:'Manrope',sans-serif; }
+  .fnums .pct{ font-size:11.5px; color:var(--text-muted); }
+  .fdrop{ display:flex; align-items:center; gap:6px; padding:2px 0 2px 150px; font-size:11px; color:var(--text-muted); }
+  .fdrop .tag{ color:var(--critical); font-weight:600; }
+
+  /* ---------- Bar list ---------- */
+  .barlist{ display:flex; flex-direction:column; gap:11px; }
+  .barrow-top{ display:flex; justify-content:space-between; gap:10px; font-size:12.5px; margin-bottom:4px; }
+  .barrow-label{ color:var(--text-primary); font-weight:500; }
+  .barrow-value{ color:var(--text-secondary); white-space:nowrap; font-weight:500;}
+  .barrow-track{ background:var(--track); border-radius:6px; height:9px; overflow:hidden; position:relative; }
+  .barrow-fill{ height:100%; border-radius:6px; background:var(--series-1); }
+  .barrow-foot{ display:flex; justify-content:flex-end; margin-top:3px; }
+  .conv-badge{ font-size:10.5px; font-weight:600; padding:1px 7px; border-radius:20px; }
+  .conv-good{ background:var(--good-soft); color:var(--good); }
+  .conv-mid{ background:var(--warning-soft); color:var(--warning); }
+  .conv-low{ background:var(--critical-soft); color:var(--critical); }
+  .conv-zero{ background:var(--surface-2); color:var(--text-muted); }
+
+  /* ---------- Table ---------- */
+  table{ width:100%; border-collapse:collapse; font-size:12.8px; }
+  thead th{
+    text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.05em;
+    color:var(--text-muted); font-weight:600; padding:0 10px 8px; border-bottom:1px solid var(--border-strong);
+  }
+  thead th.num-col, tbody td.num-col{ text-align:right; }
+  tbody td{ padding:11px 10px; border-bottom:1px solid var(--border); color:var(--text-secondary); }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody td.name{ color:var(--text-primary); font-weight:600; }
+  .num{ font-variant-numeric: tabular-nums; }
+  .mini-track{ background:var(--track); border-radius:5px; height:6px; width:80px; display:inline-block; vertical-align:middle; overflow:hidden; margin-right:8px;}
+  .mini-fill{ height:100%; border-radius:5px; background:var(--series-1); }
+  .pill{ display:inline-block; padding:2px 9px; border-radius:20px; font-size:11px; font-weight:600; }
+  .table-wrap{ overflow-x:auto; min-width:0; }
+  .table-wrap table{ min-width:480px; }
+
+  /* responsive */
+  @media (max-width:900px){
+    .kpi-grid{ grid-template-columns:repeat(3,1fr); }
+    .grid-2, .grid-3{ grid-template-columns:1fr; }
+    .fstage{ grid-template-columns:110px 1fr 90px; gap:8px;}
+    .fdrop{ padding-left:110px; }
+  }
+  @media (max-width:560px){
+    .kpi-grid{ grid-template-columns:repeat(2,1fr); }
+    .topbar{ flex-direction:column; align-items:flex-start; }
+    .meta-box{ text-align:left; }
+    .fstage{ grid-template-columns:1fr; gap:4px; }
+    .fnums{ text-align:left; display:flex; gap:8px; align-items:baseline; }
+    .fdrop{ padding-left:0; }
+  }
+
+  .footer-note{
+    margin-top:8px; font-size:11.5px; color:var(--text-muted); line-height:1.7; border-top:1px solid var(--border);
+    padding-top:16px;
+  }
+
+  /* ---------- Tabs ---------- */
+  .tabnav{
+    display:flex; gap:4px; margin-bottom:24px; border-bottom:1px solid var(--border);
+    overflow-x:auto; min-width:0; -webkit-overflow-scrolling:touch;
+  }
+  .tabbtn{ flex:none; }
+  .tabbtn{
+    appearance:none; border:none; background:transparent; cursor:pointer;
+    font-family:'IBM Plex Sans', sans-serif; font-size:13px; font-weight:600;
+    color:var(--text-muted); padding:10px 4px; margin-right:22px;
+    border-bottom:2px solid transparent; margin-bottom:-1px;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  .tabbtn:hover{ color:var(--text-primary); }
+  .tabbtn.active{ color:var(--accent); border-bottom-color:var(--accent); }
+  .tabbtn:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+
+  /* ---------- Metodologia tab ---------- */
+  .meta-p{ font-size:13.5px; color:var(--text-secondary); line-height:1.7; margin:0 0 4px; }
+  .meta-p b, .meta-list b{ color:var(--text-primary); font-weight:600; }
+  .meta-p code, .meta-list code, .mono{
+    font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:12px;
+    background:var(--surface-2); border-radius:4px; padding:1px 5px; color:var(--text-primary);
+  }
+  .meta-h3{ font-size:13px; font-weight:700; color:var(--text-primary); margin:0 0 12px; font-family:'Manrope',sans-serif; }
+  .meta-list{ margin:0; padding-left:18px; display:flex; flex-direction:column; gap:10px; }
+  .meta-list li{ font-size:13px; color:var(--text-secondary); line-height:1.65; }
+  .meta-table-wrap{ overflow-x:auto; min-width:0; margin-top:16px; }
+  table.meta-table{ width:100%; border-collapse:collapse; font-size:12.5px; min-width:520px; }
+  table.meta-table thead th{
+    text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.05em;
+    color:var(--text-muted); font-weight:600; padding:0 10px 8px; border-bottom:1px solid var(--border-strong);
+  }
+  table.meta-table thead th.num-col{ text-align:right; }
+  table.meta-table tbody td{ padding:10px; border-bottom:1px solid var(--border); color:var(--text-secondary); }
+  table.meta-table tbody td.num-col{ text-align:right; }
+  table.meta-table tbody tr:last-child td{ border-bottom:none; }
+
+  /* ---------- Diagnóstico tab ---------- */
+  .gap-list{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .gap-card{
+    display:grid; grid-template-columns:30px 1fr auto; gap:14px; align-items:center;
+    background:var(--surface); border:1px solid var(--border); border-left:4px solid var(--critical);
+    border-radius:12px; padding:16px 18px; box-shadow:var(--shadow); position:relative;
+  }
+  .gap-num{
+    width:28px; height:28px; border-radius:50%; background:var(--critical); color:#fff;
+    font-weight:800; font-size:12.5px; display:flex; align-items:center; justify-content:center;
+    font-family:'Manrope',sans-serif; align-self:start; margin-top:1px;
+  }
+  .gap-title{ font-size:13.5px; font-weight:700; color:var(--text-primary); margin-bottom:5px; }
+  .gap-body{ font-size:12.5px; color:var(--text-secondary); line-height:1.6; }
+  .gap-body .stat{ color:var(--text-primary); font-weight:600; }
+  .gap-chip{
+    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
+    background:var(--critical-soft); border-radius:12px; padding:10px 14px; min-width:84px; flex:none;
+  }
+  .gap-chip .chip-num{ font-family:'Manrope',sans-serif; font-weight:800; font-size:21px; color:var(--critical); line-height:1.05; white-space:nowrap; }
+  .gap-chip .chip-label{ font-size:9.5px; font-weight:600; color:var(--critical); text-transform:uppercase; letter-spacing:.04em; margin-top:3px; line-height:1.3; }
+  @media (max-width:860px){
+    .gap-list{ grid-template-columns:1fr; }
+  }
+  @media (max-width:560px){
+    .gap-card{ grid-template-columns:24px 1fr; }
+    .gap-chip{ grid-column:1/-1; flex-direction:row; gap:8px; justify-content:flex-start; margin-top:2px; }
+  }
+
+  details.qsec{
+    background:var(--surface); border:1px solid var(--border); border-radius:12px;
+    box-shadow:var(--shadow); margin-bottom:10px; overflow:hidden;
+  }
+  details.qsec > summary{
+    list-style:none; cursor:pointer; padding:14px 18px; display:flex; align-items:center; gap:12px;
+    font-family:'Manrope',sans-serif; font-weight:700; font-size:13.5px; color:var(--text-primary);
+  }
+  details.qsec > summary::-webkit-details-marker{ display:none; }
+  details.qsec > summary::before{
+    content:'+'; color:var(--accent); font-size:17px; font-weight:700; width:18px; text-align:center; flex:none;
+  }
+  details.qsec[open] > summary::before{ content:'–'; }
+  details.qsec > summary .qsec-tag{
+    margin-left:auto; font-size:10.5px; font-weight:600; color:var(--text-muted); text-transform:none;
+  }
+  .qsec-body{ padding:0 18px 18px 48px; }
+  .qsec-q{ font-size:13px; font-weight:600; color:var(--text-primary); margin:0 0 8px; }
+  .qsec-opts{ margin:0 0 10px; padding-left:18px; display:flex; flex-direction:column; gap:5px; }
+  .qsec-opts li{ font-size:12.5px; color:var(--text-secondary); line-height:1.55; }
+  .qsec-note{
+    background:var(--accent-soft); border-left:3px solid var(--accent); border-radius:6px;
+    padding:10px 12px; font-size:12.3px; color:var(--text-primary); line-height:1.6; margin-top:10px;
+  }
+  .qsec-note b{ color:var(--accent); }
+  .qsec-current{
+    background:var(--critical-soft); border-left:3px solid var(--critical); border-radius:6px;
+    padding:10px 12px; font-size:12.3px; color:var(--text-primary); line-height:1.6; margin-top:8px;
+  }
+  .qsec-current b{ color:var(--critical); }
+
+  .score-bar-row{ display:grid; grid-template-columns:1fr 60px; align-items:center; gap:12px; margin-bottom:10px; }
+  .score-bar-label{ font-size:12.8px; color:var(--text-primary); font-weight:500; }
+  .score-bar-track{ background:var(--track); border-radius:6px; height:10px; overflow:hidden; grid-column:1/-1; margin-top:4px; }
+  .score-bar-fill{ height:100%; border-radius:6px; background:var(--accent); }
+  .score-bar-val{ text-align:right; font-size:12.8px; font-weight:700; font-family:'Manrope',sans-serif; color:var(--text-primary); }
+
+  .classband{ display:flex; border-radius:10px; overflow:hidden; height:52px; margin:6px 0 12px; }
+  .classband > div{
+    flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    color:#fff; font-size:11px; font-weight:700; font-family:'Manrope',sans-serif; text-align:center; gap:1px;
+    border-right:2px solid var(--surface);
+  }
+  .classband > div:last-child{ border-right:none; }
+  .classband .range{ font-size:10px; font-weight:500; opacity:.85; }
+
+  .matrix-table td.profile{ color:var(--text-primary); font-weight:600; max-width:260px; }
+  .matrix-table td.route{ color:var(--accent); font-weight:600; }
+
+  /* ---------- Score thermometer ---------- */
+  .thermo-layout{ display:flex; gap:32px; align-items:stretch; }
+  .thermo-shape{ display:flex; flex-direction:column; align-items:center; flex:none; width:70px; }
+  .thermo-tick{ font-family:'Manrope',sans-serif; font-weight:800; font-size:12px; color:var(--text-muted); }
+  .thermo-tube{
+    width:38px; height:300px; margin:6px 0 0; border-radius:19px 19px 0 0; overflow:hidden;
+    display:flex; flex-direction:column-reverse; box-shadow: inset 0 0 0 3px var(--surface), var(--shadow);
+  }
+  .thermo-tube .seg{ width:100%; border-top:2px solid var(--surface); }
+  .thermo-tube .seg:last-child{ border-top:none; }
+  .thermo-bulb{
+    width:62px; height:62px; border-radius:50%; margin-top:-16px; flex:none;
+    box-shadow: inset 0 0 0 3px var(--surface), var(--shadow); position:relative; z-index:1;
+  }
+  .thermo-legend{ flex:1; display:flex; flex-direction:column; min-width:0; }
+  .thermo-legend .zone{
+    display:flex; flex-direction:column; justify-content:center; padding:8px 0 8px 16px;
+    border-left:3px solid var(--zc, var(--border)); margin-left:1px;
+  }
+  .zone-head{ display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
+  .zone-range{ font-family:'Manrope',sans-serif; font-weight:800; font-size:16px; }
+  .zone-name{ font-weight:700; font-size:13px; color:var(--text-primary); }
+  .zone-desc{ font-size:12px; color:var(--text-secondary); margin-top:3px; line-height:1.5; max-width:46ch; }
+  @media (max-width:700px){
+    .thermo-layout{ gap:20px; }
+    .thermo-shape{ width:56px; }
+    .thermo-tube{ width:30px; height:260px; }
+    .thermo-bulb{ width:50px; height:50px; }
+  }
+
+  /* ---------- Score weight — vertical column chart ---------- */
+  .vbar-chart{ display:flex; gap:10px; align-items:stretch; }
+  .vbar-axis{
+    display:flex; flex-direction:column; justify-content:space-between; align-items:flex-end;
+    height:220px; padding-bottom:26px; flex:none; width:22px;
+  }
+  .vbar-axis span{ font-size:10px; color:var(--text-muted); font-variant-numeric:tabular-nums; transform:translateY(6px); }
+  .vbar-plot{
+    flex:1; display:flex; align-items:flex-end; justify-content:space-between; gap:6px;
+    height:220px; padding-bottom:26px; position:relative;
+    background-image: repeating-linear-gradient(to top, var(--border) 0, var(--border) 1px, transparent 1px, transparent 25%);
+    background-position: 0 0; background-size: 100% 100%;
+    border-bottom:1px solid var(--border-strong);
+  }
+  .vbar-col{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; min-width:0; position:relative; }
+  .vbar-cap{
+    font-size:12px; font-weight:800; font-family:'Manrope',sans-serif; color:var(--text-primary);
+    margin-bottom:6px; white-space:nowrap;
+  }
+  .vbar-fill{ width:100%; max-width:46px; border-radius:5px 5px 0 0; }
+  .vbar-label{
+    position:absolute; top:100%; margin-top:8px; font-size:10.3px; color:var(--text-secondary);
+    text-align:center; line-height:1.3; width:100%; max-width:88px;
+  }
+  .vbar-legend{ display:flex; flex-wrap:wrap; gap:8px 16px; margin-top:52px; padding-top:14px; border-top:1px solid var(--border); }
+  .vbar-legend .item{ display:flex; align-items:center; gap:7px; font-size:12px; color:var(--text-secondary); }
+  .vbar-legend .dot{ width:9px; height:9px; border-radius:2px; flex:none; }
+  .vbar-legend .item b{ color:var(--text-primary); font-weight:700; margin-left:2px; }
+  .vbar-idx{ display:none; }
+  @media (max-width:700px){
+    .vbar-chart{ gap:6px; }
+    .vbar-plot{ gap:3px; padding-bottom:2px; }
+    .vbar-label{ display:none; }
+    .vbar-col{ position:relative; }
+    .vbar-idx{
+      display:flex; align-items:center; justify-content:center; width:16px; height:16px; border-radius:50%;
+      background:var(--surface-2); color:var(--text-secondary); font-size:9px; font-weight:700;
+      margin-top:6px; font-family:'Manrope',sans-serif;
+    }
+  }
+  .vbar-legend .idx{
+    display:inline-flex; align-items:center; justify-content:center; width:15px; height:15px; border-radius:50%;
+    background:var(--surface-2); color:var(--text-secondary); font-size:9px; font-weight:700; margin-right:2px;
+    font-family:'Manrope',sans-serif;
+  }
+
+  /* ---------------- AUDITORIA TAB ---------------- */
+  #tab-auditoria{ overflow-x:hidden; }
+  .aud-intro{ display:flex; flex-direction:column; gap:10px; }
+  .toc{ display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
+  .toc a{ font-size:11.5px; padding:6px 11px; border:1px solid var(--border); border-radius:20px; color:var(--text-secondary); text-decoration:none; font-weight:600; white-space:nowrap; }
+  .toc a:hover{ border-color:var(--accent); color:var(--accent); }
+
+  .callout{ border-left:3px solid var(--accent); background:var(--surface-2); padding:13px 16px; border-radius:0 8px 8px 0; font-size:13px; line-height:1.65; color:var(--text-secondary); margin:14px 0 0; }
+  .callout b{ color:var(--text-primary); }
+  .callout.warn{ border-left-color:var(--warning); }
+  .callout.crit{ border-left-color:var(--critical); }
+  .callout .tag{ display:block; font-size:10px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); margin-bottom:6px; }
+  .callout.warn .tag{ color:var(--warning); }
+  .callout.crit .tag{ color:var(--critical); }
+
+  .role-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+  .role-card{ background:var(--card-bg,var(--surface)); border:1px solid var(--border); border-radius:12px; padding:15px; }
+  .role-card h4{ font-size:12.5px; font-weight:800; margin:0 0 8px; color:var(--accent); text-transform:uppercase; letter-spacing:.03em; }
+  .role-card p{ font-size:12.5px; color:var(--text-secondary); line-height:1.6; margin:0; }
+  .role-card .gap-flag{ display:inline-block; margin-top:8px; font-size:10.5px; font-weight:700; color:var(--critical); background:var(--critical-soft); padding:3px 8px; border-radius:20px; }
+  @media (max-width:860px){ .role-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:560px){ .role-grid{ grid-template-columns:1fr; } }
+
+  .sev{ display:inline-block; font-size:10px; font-weight:800; padding:3px 9px; border-radius:20px; text-transform:uppercase; letter-spacing:.05em; margin-left:8px; vertical-align:middle; }
+  .sev-critico{ background:var(--critical-soft); color:var(--critical); }
+  .sev-alto{ background:var(--warning-soft); color:var(--warning); }
+  .sev-medio{ background:var(--good-soft); color:var(--good); }
+
+  .bottleneck-card{ background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:20px 22px; margin-top:16px; }
+  .bottleneck-card h3{ font-size:15px; font-weight:800; margin:0 0 4px; }
+  .bn-field{ margin-top:12px; }
+  .bn-field .lbl{ font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.05em; color:var(--text-muted); margin-bottom:4px; }
+  .bn-field .val{ font-size:13px; color:var(--text-secondary); line-height:1.65; }
+  .bn-field .val code{ background:var(--surface-2); padding:1px 5px; border-radius:4px; font-size:11.5px; }
+  .bn-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px 24px; margin-top:6px; }
+  @media (max-width:700px){ .bn-grid{ grid-template-columns:1fr; } }
+
+  .fun13-wrap{ overflow-x:auto; min-width:0; }
+  table.fun13{ width:100%; border-collapse:collapse; font-size:12px; min-width:900px; }
+  table.fun13 th{ text-align:left; font-weight:700; color:var(--text-muted); font-size:10.5px; text-transform:uppercase; letter-spacing:.04em; padding:8px 10px; border-bottom:1px solid var(--border); white-space:nowrap; }
+  table.fun13 td{ padding:9px 10px; border-bottom:1px solid var(--border); color:var(--text-secondary); vertical-align:top; }
+  table.fun13 tr:last-child td{ border-bottom:none; }
+  table.fun13 td.et{ color:var(--text-primary); font-weight:700; white-space:nowrap; }
+  table.fun13 td.num{ font-family:'IBM Plex Mono',monospace; color:var(--text-primary); font-weight:700; white-space:nowrap; }
+  table.fun13 td.nd{ color:var(--text-muted); font-style:italic; }
+  .fun13-measured{ display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--good); margin-right:6px; }
+  .fun13-missing{ display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--text-muted); margin-right:6px; }
+
+  .scn-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  @media (max-width:860px){ .scn-grid{ grid-template-columns:1fr; } }
+  .scn-card{ background:var(--surface-2); border:1px solid var(--border); border-radius:12px; padding:16px; text-align:center; }
+  .scn-card .scn-pct{ font-size:26px; font-weight:800; color:var(--accent); font-family:'IBM Plex Mono',monospace; }
+  .scn-card .scn-lbl{ font-size:11px; color:var(--text-muted); margin:2px 0 12px; }
+  .scn-card .scn-row{ display:flex; justify-content:space-between; font-size:12px; padding:6px 0; border-top:1px solid var(--border); color:var(--text-secondary); }
+  .scn-card .scn-row b{ color:var(--text-primary); }
+
+  .exec-card{ background:var(--surface-2); border:1px solid var(--border); border-left:4px solid var(--accent); border-radius:16px; padding:24px 26px; }
+  .exec-card p{ font-size:13.5px; line-height:1.75; margin:0 0 10px; color:var(--text-secondary); }
+  .exec-card p:last-child{ margin-bottom:0; }
+  .exec-card b{ font-weight:800; color:var(--text-primary); }
+
+  .script-block{ background:var(--surface-2); border-radius:12px; padding:18px 20px; }
+  .script-step{ display:flex; gap:14px; padding:12px 0; border-bottom:1px solid var(--border); }
+  .script-step:last-child{ border-bottom:none; padding-bottom:0; }
+  .script-step:first-child{ padding-top:0; }
+  .script-time{ flex:none; font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:700; color:var(--accent); width:52px; }
+  .script-body b{ display:block; font-size:12.5px; color:var(--text-primary); margin-bottom:3px; }
+  .script-body span{ font-size:12.5px; color:var(--text-secondary); line-height:1.6; }
+
+  .corr-sev{ display:inline-block; width:8px; height:8px; border-radius:2px; margin-right:7px; vertical-align:middle; }
+</style>
+
+<div class="wrap">
+
+  <div class="topbar">
+    <div>
+      <div class="brand-logo"><img src="data:image/png;base64,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" alt="iBreathwork — Instituto Brasileiro de Neurociência da Respiração"></div>
+      <p class="eyebrow">Operações Comerciais · Head de Vendas</p>
+      <h1>Painel do Funil — Desafio Breathwork &amp; Neurociência</h1>
+      <p class="sub">Leitura completa da planilha de leads, agendamentos e vendas do lançamento DS‑PP‑31ago26 — cada coluna do formulário e do CRM métrica com sua respectiva participação percentual.</p>
+    </div>
+    <div class="meta-box">
+      <div class="meta-owner">Head of Sales · <b>Renata Aguiar</b></div>
+      <div><b>104</b> leads na base · <b>17</b> vendas fechadas</div>
+      <div>Período de captação: 03–05 set/2026</div>
+      <div>Vendas registradas: 03–09 set/2026</div>
+    </div>
+  </div>
+
+  <!-- TAB NAV -->
+  <div class="tabnav" role="tablist">
+    <button class="tabbtn active" id="tabbtn-painel" role="tab" aria-selected="true" aria-controls="tab-painel">Painel Executivo</button>
+    <button class="tabbtn" id="tabbtn-metodologia" role="tab" aria-selected="false" aria-controls="tab-metodologia">Construção da Análise</button>
+    <button class="tabbtn" id="tabbtn-diagnostico" role="tab" aria-selected="false" aria-controls="tab-diagnostico">Diagnóstico &amp; Recomendações</button>
+    <button class="tabbtn" id="tabbtn-auditoria" role="tab" aria-selected="false" aria-controls="tab-auditoria">Auditoria Comercial</button>
+  </div>
+
+  <div id="tab-painel" class="tabpanel">
+
+  <!-- KPI ROW -->
+  <section>
+    <div class="kpi-grid" id="kpiGrid"></div>
+  </section>
+
+  <!-- FUNNEL -->
+  <section>
+    <div class="sec-head">
+      <h2>Funil de Conversão</h2>
+      <span class="sec-note">Base: 104 leads captados</span>
+    </div>
+    <div class="card">
+      <div class="funnel" id="funnel"></div>
+    </div>
+  </section>
+
+  <!-- FAIXA ETÁRIA -->
+  <section>
+    <div class="sec-head">
+      <h2>Leads e Conversão por Faixa Etária</h2>
+      <span class="sec-note">104 leads · 17 vendas</span>
+    </div>
+    <div class="grid-2">
+      <div class="card table-wrap">
+        <table id="idadeTable"></table>
+      </div>
+      <div class="card" id="idadeInsight" style="display:flex; flex-direction:column; justify-content:center; gap:10px;"></div>
+    </div>
+  </section>
+
+  <!-- CLOSER + ORIGEM -->
+  <section>
+    <div class="grid-2">
+      <div>
+        <div class="sec-head"><h2>Desempenho por Closer</h2></div>
+        <div class="card table-wrap">
+          <table id="closerTable"></table>
+        </div>
+      </div>
+      <div>
+        <div class="sec-head"><h2>Desempenho por Origem (UTM)</h2></div>
+        <div class="card table-wrap">
+          <table id="origemTable"></table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUALIFICAÇÃO + MOTIVOS -->
+  <section>
+    <div class="grid-2">
+      <div>
+        <div class="sec-head"><h2>Qualificação da Lead pelo Closer</h2></div>
+        <div class="card"><div class="barlist" id="constatacaoList"></div></div>
+      </div>
+      <div>
+        <div class="sec-head"><h2>Motivo de Não Agendamento</h2><span class="sec-note">37 leads sem horário marcado</span></div>
+        <div class="card"><div class="barlist" id="motivoList"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VENDAS -->
+  <section>
+    <div class="sec-head"><h2>Composição das Vendas</h2><span class="sec-note">17 contratos fechados · R$ 193.180,00</span></div>
+    <div class="grid-3">
+      <div class="card"><h3 style="font-size:13px;margin-bottom:12px;color:var(--text-secondary);">Tipo de venda</h3><div class="barlist" id="vendaTipoList"></div></div>
+      <div class="card"><h3 style="font-size:13px;margin-bottom:12px;color:var(--text-secondary);">Forma de pagamento</h3><div class="barlist" id="formaPagtoList"></div></div>
+      <div class="card" style="display:flex;flex-direction:column;gap:14px;justify-content:center;">
+        <div>
+          <div class="kpi-label">Faturamento bruto</div>
+          <div class="kpi-value num" style="font-size:20px;">R$ 193.180,00</div>
+        </div>
+        <div>
+          <div class="kpi-label">Cash recebido (entrada)</div>
+          <div class="kpi-value num" style="font-size:20px;">R$ 70.141,50 <span style="font-size:12px;color:var(--text-muted);font-weight:600;">· 36,3%</span></div>
+        </div>
+        <div>
+          <div class="kpi-label">Faturamento líquido</div>
+          <div class="kpi-value num" style="font-size:20px;">R$ 190.702,83 <span style="font-size:12px;color:var(--text-muted);font-weight:600;">· 98,7%</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERFIL DO LEAD -->
+  <section>
+    <div class="sec-head"><h2>Perfil do Lead &amp; Conversão por Segmento</h2><span class="sec-note">% = participação na base · badge = taxa de conversão do segmento</span></div>
+    <div class="grid-2" id="perfilGrid" style="row-gap:16px;"></div>
+  </section>
+
+  <!-- PROFISSÃO -->
+  <section>
+    <div class="sec-head"><h2>Profissões mais frequentes</h2></div>
+    <div class="card"><div class="barlist" id="profissaoList"></div></div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section>
+    <div class="sec-head"><h2>Volume de Leads por Dia</h2></div>
+    <div class="card"><div class="barlist" id="timelineList"></div></div>
+  </section>
+
+  <div class="footer-note">
+    <b style="color:var(--text-secondary);">Fonte dos dados:</b> esta análise foi construída integralmente a partir da planilha de leads, agendamentos e vendas fornecida pela iBreathwork (exportação do formulário do Desafio + registros do CRM comercial) — nenhum dado externo ou estimado foi incorporado. Base analisada: 104 respostas com dados válidos na planilha original (as demais 543 linhas estavam vazias). Agendamento e Closer preenchidos para 67 e 53 leads respectivamente; 14 agendamentos ainda sem closer atribuído. Valores de faturamento somam os 17 registros de VENDA presentes na base. "Constatação da Lead" e "Pq não agendou" refletem o preenchimento manual do time comercial no CRM.
+  </div>
+
+  </div><!-- /tab-painel -->
+
+  <div id="tab-metodologia" class="tabpanel" hidden>
+
+    <section>
+      <div class="sec-head"><h2>Origem e Escopo dos Dados</h2></div>
+      <div class="card">
+        <p class="meta-p">A planilha original enviada pela iBreathwork (<code>Página1</code>) continha <b>647 linhas</b> e <b>26 colunas</b>, misturando respostas do formulário do Desafio com o registro manual do CRM comercial (agendamento, closer, venda, faturamento). Apenas as <b>104 primeiras linhas</b> traziam dados — as <b>543 linhas seguintes estavam inteiramente vazias</b> e foram descartadas antes de qualquer cálculo. Nenhuma informação foi extrapolada, estimada ou trazida de fora da planilha: todo número deste painel é uma soma, contagem ou razão direta sobre essas 104 linhas.</p>
+        <div class="meta-table-wrap">
+          <table class="meta-table">
+            <thead><tr><th>Coluna na planilha</th><th class="num-col">Preenchida</th><th>Uso no painel</th></tr></thead>
+            <tbody>
+              <tr><td>Respostas do formulário (10 perguntas + Nome)</td><td class="num-col num">104 / 104</td><td>Seção "Perfil do Lead" e "Profissões"</td></tr>
+              <tr><td>AGENDAMENTO</td><td class="num-col num">67 / 104</td><td>Funil — etapa "Agendamentos"</td></tr>
+              <tr><td>Cancelamento Agendamento</td><td class="num-col num">67 / 104</td><td>Funil — cálculo de "Compareceram"</td></tr>
+              <tr><td>Closer</td><td class="num-col num">53 / 104</td><td>Tabela "Desempenho por Closer"</td></tr>
+              <tr><td>VENDA / FATURAMENTO / CASH / FAT LÍQUIDO</td><td class="num-col num">17 / 104</td><td>KPIs financeiros e "Composição das Vendas"</td></tr>
+              <tr><td>Constatação da Lead pelo Closer</td><td class="num-col num">53 / 104</td><td>"Qualificação da Lead pelo Closer"</td></tr>
+              <tr><td>Pq não agendou?</td><td class="num-col num">52 / 104</td><td>"Motivo de Não Agendamento"</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head"><h2>Tratamento Aplicado</h2></div>
+      <div class="grid-2">
+        <div class="card">
+          <h3 class="meta-h3">Limpeza e tipagem</h3>
+          <ul class="meta-list">
+            <li>Linhas 105–647, 100% vazias em todas as colunas, removidas da base antes de qualquer contagem.</li>
+            <li>Datas (<code>Submitted At</code>, <code>DATA VENDA</code>, <code>AGENDAMENTO</code>) convertidas para tipo data para permitir agrupamento por dia.</li>
+            <li>Campos monetários em texto (ex.: <code>"R$ 13.014,00"</code>) convertidos para número, removendo separador de milhar e trocando vírgula decimal por ponto.</li>
+            <li>Célula vazia em qualquer coluna tratada como "não preenchido" — nunca como zero — exceto nos totalizadores financeiros, onde ausência de venda soma R$ 0,00.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 class="meta-h3">Classificação de cada lead</h3>
+          <ul class="meta-list">
+            <li><code>tem_agendamento</code> = verdadeiro quando a coluna AGENDAMENTO tem data preenchida.</li>
+            <li><code>cancelou</code> = verdadeiro quando "Cancelamento Agendamento" = 1.</li>
+            <li><code>compareceu</code> = tem agendamento e não cancelou.</li>
+            <li><code>tem_venda</code> = verdadeiro quando a coluna VENDA está preenchida (qualquer um dos 4 tipos de contrato).</li>
+            <li>Closer em branco entre os 67 agendados agrupado como <b>"Não atribuído"</b> (14 leads) — não é um 5º closer real, é ausência de registro no CRM.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head"><h2>Fórmulas do Funil e das Taxas</h2></div>
+      <div class="card table-wrap">
+        <table class="meta-table">
+          <thead><tr><th>Métrica</th><th>Fórmula</th><th class="num-col">Resultado</th></tr></thead>
+          <tbody>
+            <tr><td>Taxa de agendamento</td><td class="mono">Agendamentos ÷ Leads</td><td class="num-col num">67 ÷ 104 = 64,4%</td></tr>
+            <tr><td>Taxa de cancelamento</td><td class="mono">Cancelamentos ÷ Agendamentos</td><td class="num-col num">27 ÷ 67 = 40,3%</td></tr>
+            <tr><td>Taxa de comparecimento</td><td class="mono">(Agendamentos − Cancelamentos) ÷ Agendamentos</td><td class="num-col num">40 ÷ 67 = 59,7%</td></tr>
+            <tr><td>Conversão agendamento → venda</td><td class="mono">Vendas ÷ Agendamentos</td><td class="num-col num">17 ÷ 67 = 25,4%</td></tr>
+            <tr><td>Conversão comparecimento → venda</td><td class="mono">Vendas ÷ Compareceram</td><td class="num-col num">17 ÷ 40 = 42,5%</td></tr>
+            <tr><td>Conversão lead → venda</td><td class="mono">Vendas ÷ Leads</td><td class="num-col num">17 ÷ 104 = 16,3%</td></tr>
+            <tr><td>Ticket médio</td><td class="mono">Faturamento total ÷ Vendas</td><td class="num-col num">R$ 193.180 ÷ 17 = R$ 11.363,53</td></tr>
+            <tr><td>Cash sobre faturamento</td><td class="mono">Σ CASH ÷ Σ FATURAMENTO</td><td class="num-col num">70.141,50 ÷ 193.180 = 36,3%</td></tr>
+            <tr><td>Taxa de conversão por segmento</td><td class="mono">Vendas do segmento ÷ Leads do segmento</td><td class="num-col num">ex.: Closer B → 8 ÷ 18 = 44,4%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head"><h2>Agrupamentos e Recortes</h2></div>
+      <div class="card">
+        <ul class="meta-list">
+          <li><b>Profissões:</b> 29 categorias distintas informadas em texto livre pelo lead; as 8 mais frequentes aparecem nomeadas e as 21 restantes (1 ocorrência cada, 22,1% da base) foram agrupadas em "Outras profissões" para manter o gráfico legível — nenhuma foi excluída da contagem total.</li>
+          <li><b>Motivo de não agendamento:</b> calculado apenas sobre os 37 leads sem AGENDAMENTO preenchido; onde o closer não registrou motivo, a linha entra como "Não respondeu".</li>
+          <li><b>Faixa etária, renda, formação, clientes/mês, sessões assistidas, interesse no programa e na bolsa:</b> distribuições diretas das respostas do formulário, cruzadas com <code>tem_venda</code> para gerar a taxa de conversão por segmento — sem segmentação adicional (ex.: sem cruzar idade × renda).</li>
+          <li><b>Origem (UTM):</b> a coluna <code>ORIGEM</code> do CRM (preenchida só nas 17 vendas) não foi usada para a tabela de performance — usamos <code>utm_source</code>, preenchida nos 104 leads, para poder comparar leads, agendamentos e vendas na mesma base.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head"><h2>Limitações e Pontos de Atenção</h2></div>
+      <div class="card">
+        <ul class="meta-list">
+          <li>A venda de "Maria" (DS-ago25-av-qr) está registrada com <code>DATA VENDA</code> em 12/08/2025 — provável erro de digitação no CRM, já que todo o restante do lote foi vendido entre 03–09/09/2026. O valor foi mantido na soma de faturamento por ser consistente com os demais contratos de Pós-Graduação; vale confirmar a data com o time comercial.</li>
+          <li><b>14 dos 67 agendamentos</b> não têm Closer nem "Constatação da Lead" preenchidos no CRM — eles entram nos totais do funil, mas não aparecem em nenhuma métrica individual de closer.</li>
+          <li>Os campos "Constatação da Lead pelo Closer" e "Pq não agendou?" são preenchimento manual e livre do time comercial (inclui valores como <code>"???"</code>) — refletem o critério de cada closer, não uma régua padronizada.</li>
+          <li>Amostra pequena: 17 vendas totais. Recortes por segmento (ex.: faixa etária, origem) com poucos casos — como "26–35 anos" (6 leads) ou "DS-PP-31ago26-pg-grav" (3 leads) — têm taxas de conversão sensíveis a 1 venda a mais ou a menos; leia-as como direção, não como certeza estatística.</li>
+        </ul>
+      </div>
+    </section>
+
+  </div><!-- /tab-metodologia -->
+
+  <div id="tab-diagnostico" class="tabpanel" hidden>
+
+    <section>
+      <div class="sec-head">
+        <h2>Diagnóstico: o que o formulário atual não deixa enxergar</h2>
+        <span class="sec-note">7 lacunas identificadas nos dados dos 104 leads já analisados</span>
+      </div>
+      <div class="gap-list">
+        <div class="gap-card">
+          <div class="gap-num">1</div>
+          <div>
+            <div class="gap-title">Ticket médio ausente — volume não diz se o negócio é lucrativo</div>
+            <div class="gap-body"><span class="stat">32 leads (30,8%)</span> declaram atender "mais de 10 clientes/mês" e <span class="stat">39 (37,5%)</span> dizem não estar atendendo — sem ticket médio nem faturamento em faixas comparáveis, não dá pra saber se os 32 têm um negócio estruturado ou muito volume a preço baixo. Conversão desse grupo hoje é praticamente igual à de quem não atende ninguém.</div>
+          </div>
+          <div class="gap-chip"><div class="chip-num">15,6%</div><div class="chip-label">conversão do grupo "alto volume"</div></div>
+        </div>
+        <div class="gap-card">
+          <div class="gap-num">2</div>
+          <div>
+            <div class="gap-title">Mestrado e doutorado misturados com pós lato sensu</div>
+            <div class="gap-body">A opção <span class="stat">"MBA/Pós-graduação/Mestrado/Doutorado"</span> concentra a base numa única categoria — não dá pra diferenciar quem já é mestre/doutor de quem está numa pós lato sensu em andamento, dois perfis com elegibilidade acadêmica muito diferente para o programa de Pós-Graduação.</div>
+          </div>
+          <div class="gap-chip"><div class="chip-num">53,8%</div><div class="chip-label">da base numa só categoria</div></div>
+        </div>
+        <div class="gap-card">
+          <div class="gap-num">3</div>
+          <div>
+            <div class="gap-title">Sessões assistidas dependem da memória do lead, não de rastreio</div>
+            <div class="gap-body">Leads marcaram "assisti 3 ou + sessões" por autodeclaração — sem registro de entrada na sala, tempo de permanência ou cliques, não dá pra confirmar engajamento real nem cruzar participação com conversão de forma confiável.</div>
+          </div>
+          <div class="gap-chip"><div class="chip-num">73,1%</div><div class="chip-label">autodeclararam 3+ sessões</div></div>
+        </div>
+        <div class="gap-card">
+          <div class="gap-num">4</div>
+          <div>
+            <div class="gap-title">"Programa de interesse" não vira necessidade comercial objetiva</div>
+            <div class="gap-body">"Quero entender melhor as opções" foi a <span class="stat">2ª resposta mais comum</span> — o closer chega na ligação sem saber qual produto oferecer primeiro. É a resposta mais vaga de todo o formulário atual.</div>
+          </div>
+          <div class="gap-chip"><div class="chip-num">34,6%</div><div class="chip-label">"quero entender melhor"</div></div>
+        </div>
+        <div class="gap-card">
+          <div class="gap-num">5</div>
+          <div>
+            <div class="gap-title">Qualificação da lead sem critério padronizado</div>
+            <div class="gap-body">Leads foram marcados como <span class="stat">"???"</span> em "Constatação da Lead pelo Closer" — não existe hoje um score objetivo por trás da etiqueta; o critério muda de closer para closer, o que também explica parte da diferença de conversão entre eles (Closer B 44,4% vs. Closer A 21,4%).</div>
+          </div>
+          <div class="gap-chip"><div class="chip-num">18,9%</div><div class="chip-label">qualificados como "???"</div></div>
+        </div>
+        <div class="gap-card">
+          <div class="gap-num">6</div>
+          <div>
+            <div class="gap-title">Pergunta da bolsa mede intenção, não prontidão financeira</div>
+            <div class="gap-body">Leads responderam "tenho interesse, mas preciso avaliar formas de pagamento" — a pergunta não separa quem tem capacidade de pagar o restante do valor de quem só está sendo educado sobre o produto.</div>
+          </div>
+          <div class="gap-chip"><div class="chip-num">51,0%</div><div class="chip-label">resposta neutra sobre a bolsa</div></div>
+        </div>
+        <div class="gap-card">
+          <div class="gap-num">7</div>
+          <div>
+            <div class="gap-title">Idade sem cruzamento com suporte, abandono ou usabilidade</div>
+            <div class="gap-body">A faixa <span class="stat">56–65 anos converte a 8,0%</span> vs. 28,0% na faixa 46–55, com o mesmo tamanho de base (25 leads cada) — mas sem dados de suporte, abandono de aulas ou NPS por idade, não dá pra confirmar se a causa é dificuldade de acesso à tecnologia ou outro fator. É uma hipótese a validar, não uma conclusão.</div>
+          </div>
+          <div class="gap-chip"><div class="chip-num">3,5×</div><div class="chip-label">menor conversão 56–65 vs. 46–55</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <h2>Estrutura recomendada do novo formulário</h2>
+        <span class="sec-note">12 seções · clique para expandir cada uma</span>
+      </div>
+
+      <details class="qsec">
+        <summary>1. Dados de identificação <span class="qsec-tag">Nome · WhatsApp · E-mail · Instagram</span></summary>
+        <div class="qsec-body">
+          <p class="qsec-q">Nome completo, WhatsApp com DDD (validação de telefone) e melhor e-mail (validação de e-mail) — todos obrigatórios.</p>
+          <p class="qsec-q">Qual é o seu Instagram profissional?</p>
+          <ul class="qsec-opts">
+            <li>Campo para @usuário</li>
+            <li>Opção: "Ainda não possuo um Instagram profissional"</li>
+          </ul>
+          <div class="qsec-note">O Instagram ajuda o SDR a avaliar <b>posicionamento, autoridade, audiência, frequência de conteúdo, clareza da oferta e potencial de monetização</b> — mas a análise deve seguir critérios padronizados. Número de seguidores, isoladamente, não determina potencial comercial.</div>
+        </div>
+      </details>
+
+      <details class="qsec">
+        <summary>2. Formação acadêmica <span class="qsec-tag">eliminatória para Pós · até 40 pts do score</span></summary>
+        <div class="qsec-body">
+          <p class="qsec-q">Qual é o seu nível de formação acadêmica?</p>
+          <ul class="qsec-opts">
+            <li>Ensino médio completo</li>
+            <li>Graduação em andamento</li>
+            <li>Graduação completa</li>
+            <li>Pós-graduação lato sensu em andamento</li>
+            <li>Pós-graduação lato sensu completa</li>
+            <li>Mestrado em andamento</li>
+            <li>Mestrado completo</li>
+            <li>Doutorado em andamento</li>
+            <li>Doutorado completo</li>
+          </ul>
+          <div class="qsec-note">Mestrado e doutorado precisam estar separados de pós-graduação lato sensu — são níveis acadêmicos diferentes. Pergunta <b>eliminatória para a Pós-Graduação</b>: quem não possui graduação completa pode ser direcionado para outra formação da esteira. Pontuação sugerida: ensino médio / graduação em andamento = 0 pts; graduação completa, pós, mestrado ou doutorado (completos ou em andamento) = 4 pts cada. A formação pode representar <b>40% do score de elegibilidade</b>, mas não necessariamente 40% do potencial comercial total.</div>
+          <div class="qsec-current">Hoje essa granularidade não existe: os 56 leads (53,8%) em "MBA/Pós-graduação/Mestrado/Doutorado" ficam numa única resposta.</div>
+        </div>
+      </details>
+
+      <details class="qsec">
+        <summary>3. Área de atuação <span class="qsec-tag">separa estabelecido · em construção · sem atuação</span></summary>
+        <div class="qsec-body">
+          <p class="qsec-q">Atualmente, qual opção melhor descreve sua atuação?</p>
+          <ul class="qsec-opts">
+            <li>Atendo clientes ou pacientes individualmente</li>
+            <li>Tenho consultório, clínica ou espaço próprio</li>
+            <li>Trabalho em uma clínica ou empresa</li>
+            <li>Atuo como professor, mentor ou facilitador</li>
+            <li>Estou iniciando minha atuação profissional</li>
+            <li>Sou estudante</li>
+            <li>Trabalho em outra área</li>
+            <li>Ainda não atuo profissionalmente</li>
+          </ul>
+          <div class="qsec-note">Essa pergunta permite separar <b>profissional estabelecido</b>, <b>profissional em construção</b> e <b>pessoa sem atuação relacionada</b> — três jornadas comerciais diferentes.</div>
+        </div>
+      </details>
+
+      <details class="qsec">
+        <summary>4. Volume e ticket médio <span class="qsec-tag">clientes/mês × ticket × faturamento</span></summary>
+        <div class="qsec-body">
+          <p class="qsec-q">Quantos clientes ou pacientes você atende, em média, por mês?</p>
+          <ul class="qsec-opts">
+            <li>Ainda não atendo</li><li>De 1 a 5</li><li>De 6 a 10</li><li>De 11 a 20</li><li>De 21 a 40</li><li>Mais de 40</li>
+          </ul>
+          <p class="qsec-q">Qual é o valor médio pago por cada cliente ou paciente?</p>
+          <ul class="qsec-opts">
+            <li>Ainda não tenho clientes</li><li>Até R$ 100</li><li>De R$ 101 a R$ 300</li><li>De R$ 301 a R$ 600</li>
+            <li>De R$ 601 a R$ 1.000</li><li>De R$ 1.001 a R$ 2.000</li><li>Acima de R$ 2.000</li><li>Não sei calcular meu ticket médio</li>
+          </ul>
+          <p class="qsec-q">Qual é o seu faturamento mensal com essa atividade?</p>
+          <ul class="qsec-opts">
+            <li>Ainda não faturo</li><li>Até R$ 2.000</li><li>De R$ 2.001 a R$ 5.000</li><li>De R$ 5.001 a R$ 10.000</li>
+            <li>De R$ 10.001 a R$ 20.000</li><li>De R$ 20.001 a R$ 40.000</li><li>Acima de R$ 40.000</li><li>Prefiro não informar</li>
+          </ul>
+          <div class="qsec-note">A pergunta "quantos clientes atende?" isoladamente é insuficiente. Cruzada com ticket médio e faturamento, ela diferencia: <b>muito atendimento com ticket baixo</b>, <b>pouco atendimento com ticket alto</b>, <b>alta audiência com baixa monetização</b>, <b>negócio estruturado</b> e <b>profissional iniciante</b>.</div>
+          <div class="qsec-current">Ver Gap 1 — hoje só temos "clientes atendidos", sem ticket médio nem faturamento em faixas comparáveis.</div>
+        </div>
+      </details>
+
+      <details class="qsec">
+        <summary>5. Faixa etária <span class="qsec-tag">hipótese, não conclusão</span></summary>
+        <div class="qsec-body">
+          <p class="qsec-q">Em qual faixa etária você está?</p>
+          <ul class="qsec-opts">
+            <li>Até 24 anos</li><li>De 25 a 34 anos</li><li>De 35 a 44 anos</li><li>De 45 a 54 anos</li><li>De 55 a 64 anos</li><li>65 anos ou mais</li>
+          </ul>
+          <div class="qsec-note">A presença de muitas pessoas acima de 50 anos <b>não deve ser tratada automaticamente como problema</b> — é uma hipótese de necessidade de suporte, que precisa ser validada cruzando idade com dificuldades de acesso, chamados de suporte, abandono, conclusão das aulas, participação ao vivo, NPS e inadimplência/reembolso. Conclusão correta: "a concentração de leads acima de 50 anos sinaliza a necessidade de avaliar usabilidade e suporte digital — idade isoladamente não comprova dificuldade tecnológica."</div>
+          <div class="qsec-current">Ver Gap 7 — nosso achado (56–65 converte 3,5× menos que 46–55) é exatamente o tipo de sinal que essa metodologia pede para validar, não para tratar como causa provada.</div>
+        </div>
+      </details>
+
+      <details class="qsec">
+        <summary>6. Participação no desafio <span class="qsec-tag">rastreio automático + pergunta complementar</span></summary>
+        <div class="qsec-body">
+          <p class="qsec-q">"Quantas sessões assistiu?" não deve depender apenas da memória ou declaração da pessoa. O ideal é registrar automaticamente:</p>
+          <ul class="qsec-opts">
+            <li>Inscrição</li><li>Entrada na sala</li><li>Tempo de permanência</li><li>Aula assistida</li>
+            <li>Cliques</li><li>Interações</li><li>Replays</li><li>Participação em todas as sessões</li>
+          </ul>
+          <p class="qsec-q">Pergunta complementar: qual conteúdo do desafio mais chamou sua atenção?</p>
+          <ul class="qsec-opts">
+            <li>Regulação emocional e bem-estar</li><li>Aplicação profissional da técnica</li><li>Neurociência</li>
+            <li>Possibilidade de uma nova carreira</li><li>Expansão do consultório ou negócio</li>
+            <li>Certificação ou titulação acadêmica</li><li>Ainda não consegui acompanhar o conteúdo</li>
+          </ul>
+          <div class="qsec-note">O dado declarado <b>complementa</b> o comportamento rastreado — não o substitui.</div>
+          <div class="qsec-current">Ver Gap 3 — hoje 73,1% autodeclaram "3+ sessões" sem nenhum rastreio por trás.</div>
+        </div>
+      </details>
+
+      <details class="qsec">
+        <summary>7. Objetivo de renda <span class="qsec-tag">comparar com renda atual, prazo e estrutura</span></summary>
+        <div class="qsec-body">
+          <p class="qsec-q">Qual renda mensal você deseja alcançar com sua atuação profissional nos próximos 12 meses?</p>
+          <ul class="qsec-opts">
+            <li>Até R$ 5.000</li><li>De R$ 5.001 a R$ 10.000</li><li>De R$ 10.001 a R$ 20.000</li>
+            <li>De R$ 20.001 a R$ 30.000</li><li>De R$ 30.001 a R$ 50.000</li><li>Acima de R$ 50.000</li>
+            <li>Meu objetivo principal não é financeiro</li><li>Ainda não defini uma meta</li>
+          </ul>
+          <div class="qsec-note">Deve ser comparada com renda atual, prazo e nível de estrutura. Uma aspiração alta não significa, sozinha, maior capacidade de compra.</div>
+        </div>
+      </details>
+
+      <details class="qsec">
+        <summary>8. Principal desafio profissional <span class="qsec-tag">múltipla escolha · até 2</span></summary>
+        <div class="qsec-body">
+          <p class="qsec-q">Qual é o seu maior desafio profissional atualmente? (escolha até duas opções)</p>
+          <ul class="qsec-opts">
+            <li>Atrair novos clientes ou pacientes</li><li>Aumentar o valor cobrado pelos meus atendimentos</li>
+            <li>Transformar seguidores em clientes</li><li>Posicionar-me como autoridade</li>
+            <li>Criar um método ou atendimento diferenciado</li><li>Ter segurança para aplicar a técnica profissionalmente</li>
+            <li>Organizar meu consultório ou negócio</li><li>Aumentar meu faturamento</li>
+            <li>Fazer uma transição de carreira</li><li>Obter formação e certificação reconhecidas</li>
+            <li>Conciliar trabalho, estudos e vida pessoal</li><li>Superar insegurança ou falta de confiança profissional</li>
+            <li>Ainda não comecei a atuar</li><li>Outro desafio não listado</li>
+          </ul>
+          <div class="qsec-note">"Outro" pode abrir uma observação curta, mas deve ser <b>exceção, não o campo principal</b>.</div>
+        </div>
+      </details>
+
+      <details class="qsec">
+        <summary>9. Motivação para o programa <span class="qsec-tag">múltipla escolha · até 2</span></summary>
+        <div class="qsec-body">
+          <p class="qsec-q">Por que essa formação faz sentido para o seu momento atual? (escolha até duas alternativas)</p>
+          <ul class="qsec-opts">
+            <li>Quero utilizar o conhecimento na minha atuação profissional</li>
+            <li>Quero ampliar os resultados dos meus clientes ou pacientes</li>
+            <li>Quero iniciar uma nova carreira</li>
+            <li>Quero aumentar minha autoridade profissional</li>
+            <li>Quero diferenciar meu atendimento</li>
+            <li>Quero aumentar meu faturamento</li>
+            <li>Quero obter uma formação acadêmica</li>
+            <li>Quero aplicar o conhecimento no meu desenvolvimento pessoal</li>
+            <li>Quero estruturar um novo serviço ou produto</li>
+            <li>Ainda estou avaliando se essa formação é adequada para mim</li>
+          </ul>
+          <div class="qsec-note">Identifica a motivação sem depender de uma resposta totalmente aberta.</div>
+        </div>
+      </details>
+
+      <details class="qsec">
+        <summary>10. Produto de interesse <span class="qsec-tag">opções concretas, com preço</span></summary>
+        <div class="qsec-body">
+          <p class="qsec-q">Qual programa parece mais alinhado ao seu momento?</p>
+          <ul class="qsec-opts">
+            <li>Mentoria SMART — R$ 1.997/ano</li>
+            <li>Formação Nível 1 — R$ 6.000</li>
+            <li>Formação Níveis 1 e 2 — R$ 8.000</li>
+            <li>Formação Completa — R$ 10.000</li>
+            <li>Pós-Graduação — R$ 12.000</li>
+            <li>Mentoria individual premium — R$ 37.000</li>
+            <li>Preciso de orientação para identificar o programa adequado</li>
+          </ul>
+          <div class="qsec-note">"Preciso de orientação" é melhor do que "quero entender melhor", porque vira uma <b>necessidade comercial objetiva</b>. "Não busco nada agora" não deve compor a qualificação de uma aplicação comercial — se for necessário medir falta de intenção, isso deve estar na pergunta de momento de compra (seção 11).</div>
+          <div class="qsec-current">Ver Gap 4 — a versão atual ("Quais dos Nossos Programas mais te interessou?") tem "Quero entender melhor as opções" como 2ª resposta mais comum (34,6%) e não usa nomes/preços reais de produto.</div>
+        </div>
+      </details>
+
+      <details class="qsec">
+        <summary>11. Momento de entrada <span class="qsec-tag">separa oportunidade imediata de nutrição</span></summary>
+        <div class="qsec-body">
+          <p class="qsec-q">Quando você pretende iniciar uma formação?</p>
+          <ul class="qsec-opts">
+            <li>Imediatamente</li><li>Nos próximos 30 dias</li><li>Entre 31 e 90 dias</li>
+            <li>Entre 3 e 6 meses</li><li>Depois de 6 meses</li><li>Ainda não tenho previsão</li>
+          </ul>
+          <div class="qsec-note">Esse dado permite separar <b>oportunidade imediata</b> de <b>lead para nutrição</b>.</div>
+        </div>
+      </details>
+
+      <details class="qsec">
+        <summary>12. Processo da bolsa <span class="qsec-tag">valor antes do desconto</span></summary>
+        <div class="qsec-body">
+          <p class="qsec-q">Não recomendamos apresentar o desconto antes de construir valor e entender a motivação. Se a bolsa foi anunciada na aula: "Durante a aula, foram anunciadas cinco bolsas de até 50%. Por que você acredita que deve ser selecionado?" (até três alternativas)</p>
+          <ul class="qsec-opts">
+            <li>Tenho um projeto profissional claro para aplicar o conhecimento</li>
+            <li>Já atendo clientes ou pacientes e poderei aplicar imediatamente</li>
+            <li>Estou comprometido com a conclusão integral da formação</li>
+            <li>A formação terá impacto direto na minha carreira</li>
+            <li>Quero ampliar o acesso à técnica na minha comunidade</li>
+            <li>Tenho disponibilidade para participar das atividades</li>
+            <li>Estou em transição de carreira e possuo um plano estruturado</li>
+            <li>Tenho audiência ou rede profissional para ampliar o impacto do projeto</li>
+            <li>Sem a bolsa, não consigo realizar a formação neste momento</li>
+            <li>A bolsa aceleraria uma decisão que já pretendo tomar</li>
+          </ul>
+          <p class="qsec-q">Pergunta complementar obrigatória: se você receber uma bolsa parcial, está preparado para investir o valor restante?</p>
+          <ul class="qsec-opts">
+            <li>Sim, consigo realizar o investimento agora</li>
+            <li>Sim, dependendo das condições de parcelamento</li>
+            <li>Preciso conversar com outra pessoa antes da decisão</li>
+            <li>Precisaria de um prazo de até 30 dias</li>
+            <li>Ainda não sei</li>
+            <li>Não consigo realizar nenhum investimento no momento</li>
+          </ul>
+          <div class="qsec-note">Essa pergunta complementar mede <b>prontidão financeira</b> com mais clareza do que "gostaria de entrar para a turma?".</div>
+          <div class="qsec-current">Ver Gap 6 — a pergunta atual da bolsa ("gostaria de entrar pra essa turma?") mede intenção, não prontidão: 51,0% responderam de forma neutra ("preciso avaliar formas de pagamento").</div>
+        </div>
+      </details>
+    </section>
+
+    <section>
+      <div class="sec-head"><h2>Modelo de Lead Scoring (proposta)</h2><span class="sec-note">100 pontos · aplicável ao próximo ciclo</span></div>
+
+      <div class="card">
+        <h3 class="meta-h3">O termômetro de qualificação</h3>
+        <div class="thermo-layout">
+          <div class="thermo-shape">
+            <span class="thermo-tick">100</span>
+            <div class="thermo-tube">
+              <div class="seg" style="flex:39; background:var(--critical);"></div>
+              <div class="seg" style="flex:20; background:var(--warning);"></div>
+              <div class="seg" style="flex:20; background:var(--series-1);"></div>
+              <div class="seg" style="flex:21; background:var(--good);"></div>
+            </div>
+            <div class="thermo-bulb" style="background:var(--critical);"></div>
+            <span class="thermo-tick" style="margin-top:6px;">0</span>
+          </div>
+          <div class="thermo-legend">
+            <div class="zone" style="flex:21; --zc:var(--good);">
+              <div class="zone-head"><span class="zone-range" style="color:var(--good);">80–100</span><span class="zone-name">Oportunidade prioritária</span></div>
+              <div class="zone-desc">Score alto em quase todas as dimensões — prioridade de agenda do closer.</div>
+            </div>
+            <div class="zone" style="flex:20; --zc:var(--series-1);">
+              <div class="zone-head"><span class="zone-range" style="color:var(--series-1);">60–79</span><span class="zone-name">SQL</span></div>
+              <div class="zone-desc">Elegível e com sinais claros de intenção — pronto para abordagem comercial direta.</div>
+            </div>
+            <div class="zone" style="flex:20; --zc:var(--warning);">
+              <div class="zone-head"><span class="zone-range" style="color:var(--warning);">40–59</span><span class="zone-name">MQL</span></div>
+              <div class="zone-desc">Qualificado em parte — precisa de nutrição ou mais informação antes da venda.</div>
+            </div>
+            <div class="zone" style="flex:39; --zc:var(--critical);">
+              <div class="zone-head"><span class="zone-range" style="color:var(--critical);">0–39</span><span class="zone-name">Não elegível / Nutrição</span></div>
+              <div class="zone-desc">Fora do perfil ideal hoje — direcionar para outra esteira ou para conteúdo de nutrição.</div>
+            </div>
+          </div>
+        </div>
+        <p class="meta-p" style="margin-top:18px; padding-top:16px; border-top:1px solid var(--border);">O termômetro substitui etiquetas subjetivas como o <code>"???"</code> visto em 10 leads da base atual (Gap 5) por um critério único, aplicado da mesma forma por qualquer closer.</p>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <h3 class="meta-h3">Como os 100 pontos se dividem</h3>
+        <div class="vbar-chart">
+          <div class="vbar-axis"><span>40</span><span>30</span><span>20</span><span>10</span><span>0</span></div>
+          <div class="vbar-plot" id="scoreVBars"></div>
+        </div>
+        <div class="vbar-legend" id="scoreLegend"></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head"><h2>Matriz de Cross-sell, Downsell e Upsell</h2></div>
+      <div class="card table-wrap">
+        <table class="meta-table matrix-table">
+          <thead><tr><th>Perfil identificado</th><th>Direcionamento</th></tr></thead>
+          <tbody>
+            <tr><td class="profile">Sem graduação completa</td><td class="route">Formação Nível 1</td></tr>
+            <tr><td class="profile">Interesse inicial ou baixa capacidade financeira</td><td class="route">Mentoria SMART</td></tr>
+            <tr><td class="profile">Busca aprofundamento intermediário</td><td class="route">Formação Níveis 1 e 2</td></tr>
+            <tr><td class="profile">Busca formação integral</td><td class="route">Formação Completa</td></tr>
+            <tr><td class="profile">Graduação completa e interesse acadêmico</td><td class="route">Pós-Graduação</td></tr>
+            <tr><td class="profile">Alta maturidade, autoridade e capacidade financeira</td><td class="route">Mentoria individual premium (R$ 37.000)</td></tr>
+            <tr><td class="profile">Aluno de produto inicial</td><td class="route">Upsell para a formação seguinte</td></tr>
+            <tr><td class="profile">Lead sem condição para o produto principal</td><td class="route">Downsell estruturado</td></tr>
+            <tr><td class="profile">Aluno já formado</td><td class="route">Cross-sell de mentoria ou especialização</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="footer-note">
+    <b style="color:var(--text-secondary);">Status:</b> esta aba documenta uma <b>proposta de diagnóstico e redesenho</b> do formulário e do processo de qualificação, construída a partir dos gaps observados nos 104 leads já analisados. O modelo de lead scoring, a nova estrutura de perguntas e a matriz de cross/up/downsell ainda não foram aplicados retroativamente à base atual — vários campos novos (ticket médio, Instagram, momento de compra, prontidão financeira etc.) simplesmente não existem nos dados coletados até aqui. A validação real começa no próximo ciclo de captação, comparando o score previsto de cada lead com a conversão observada.
+    </div>
+
+  </div><!-- /tab-diagnostico -->
+
+  <div id="tab-auditoria" class="tabpanel" hidden>
+
+    <section>
+      <div class="card aud-intro">
+        <div class="sec-head" style="margin-bottom:2px;"><h2>Auditoria Comercial &amp; Diagnóstico de Gargalos</h2><span class="sec-note">Head Comercial · RevOps · Auditoria de Dados</span></div>
+        <p class="meta-p">Esta aba responde a uma pergunta específica: <b>onde exatamente a receita está travando entre o lead e a venda, com que evidência, e o que fazer em 30 dias.</b> Todos os números abaixo foram recalculados diretamente na planilha original (<code>Página1</code>, 647 linhas, 104 com dados válidos) — não a partir do resumo do Painel Executivo. Onde a planilha não tem o campo necessário, isto está escrito de forma explícita, sem estimativa: <b>"Informação não disponível na base. A hipótese precisa ser validada antes de ser tratada como conclusão."</b> Nenhum benchmark de mercado externo foi usado nesta análise — toda taxa e toda meta aqui vêm da própria base ou são premissas explicitamente marcadas como hipótese.</p>
+        <div class="toc">
+          <a href="#aud-governanca">Governança</a>
+          <a href="#aud-validacao">Validação dos dados</a>
+          <a href="#aud-funil">Funil de 13 etapas</a>
+          <a href="#aud-gargalos">3 gargalos críticos</a>
+          <a href="#aud-sdr">Painel SDR</a>
+          <a href="#aud-closer">Closers</a>
+          <a href="#aud-origem">Origem / UTM</a>
+          <a href="#aud-scoring">Lead scoring</a>
+          <a href="#aud-esteira">Esteira de produtos</a>
+          <a href="#aud-cenarios">Cenários financeiros</a>
+          <a href="#aud-priorizacao">Priorização</a>
+          <a href="#aud-plano30">Plano de 30 dias</a>
+          <a href="#aud-entregaveis">Entregáveis finais</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="kpi-grid" id="audKpiGrid"></div>
+    </section>
+
+    <section id="aud-governanca">
+      <div class="sec-head"><h2>Modelo de Governança Comercial</h2><span class="sec-note">papéis, responsabilidades e onde a base diverge do modelo correto</span></div>
+      <div class="role-grid">
+        <div class="role-card">
+          <h4>Marketing</h4>
+          <p>Gera e faz a primeira triagem do lead (origem/UTM, campanha, formulário). Entrega o lead cru para a esteira comercial.</p>
+        </div>
+        <div class="role-card">
+          <h4>SDR</h4>
+          <p>Responsável pela qualificação e classificação comercial do lead em MQL / SQL / desqualificado, <b>antes</b> de qualquer contato do closer.</p>
+          <span class="gap-flag">Sem campo na base</span>
+        </div>
+        <div class="role-card">
+          <h4>Closer</h4>
+          <p>Recebe o SQL já qualificado, conduz a reunião, valida o diagnóstico e fecha a venda ou registra a perda com motivo.</p>
+        </div>
+        <div class="role-card">
+          <h4>Head Comercial</h4>
+          <p>Define critério de qualificação, SLA de resposta, audita o CRM e treina o time para aplicar a régua de forma consistente.</p>
+        </div>
+      </div>
+      <div class="callout crit">
+        <span class="tag">Achado crítico de estrutura</span>
+        A planilha não tem nenhuma coluna de SDR — nem nome, nem timestamp de qualificação, nem status de MQL/SQL. A única coluna de classificação chama-se literalmente <code>"Constatação da Lead pelo Closer"</code>: o próprio nome do campo mostra que hoje é o <b>closer</b> quem qualifica o lead, na mesma ligação em que tenta vender — não o SDR, antes do agendamento. <b>O SDR é responsável pela qualificação e classificação comercial do lead. O closer recebe o SQL previamente qualificado, valida o diagnóstico e conduz a oportunidade até a venda ou perda.</b> Isso não está acontecendo hoje nesta operação, pelo menos não de forma registrada em CRM.
+      </div>
+    </section>
+
+    <section id="aud-validacao">
+      <div class="sec-head"><h2>1. Validação dos Dados Gerais</h2><span class="sec-note">todo cálculo abaixo foi refeito direto na planilha, célula a célula</span></div>
+      <div class="card table-wrap">
+        <table class="meta-table">
+          <thead><tr><th>Métrica</th><th class="num-col">Painel Executivo</th><th class="num-col">Recalculado nesta auditoria</th><th>Situação</th></tr></thead>
+          <tbody>
+            <tr><td>Total de leads (linhas com dado válido)</td><td class="num-col num">104</td><td class="num-col num">104</td><td>✅ Confere</td></tr>
+            <tr><td>Agendamentos</td><td class="num-col num">67</td><td class="num-col num">67</td><td>✅ Confere</td></tr>
+            <tr><td>Cancelamentos</td><td class="num-col num">27</td><td class="num-col num">27</td><td>✅ Confere</td></tr>
+            <tr><td>Compareceram</td><td class="num-col num">40</td><td class="num-col num">40</td><td>✅ Confere</td></tr>
+            <tr><td>Vendas</td><td class="num-col num">17</td><td class="num-col num">17</td><td>✅ Confere</td></tr>
+            <tr><td>Faturamento bruto (contratado)</td><td class="num-col num">R$ 193.180,00</td><td class="num-col num">R$ 193.180,00</td><td>✅ Confere</td></tr>
+            <tr><td>Cash recebido (entrada)</td><td class="num-col num">R$ 70.141,50</td><td class="num-col num">R$ 70.141,50</td><td>✅ Confere</td></tr>
+            <tr><td>Fechamento por Closer / Origem / Constatação / Motivo de não agendamento</td><td class="num-col num">—</td><td class="num-col num">—</td><td>✅ Todas as 4 tabelas conferem linha a linha</td></tr>
+          </tbody>
+        </table>
+        <p class="meta-p" style="margin-top:12px;">Conclusão da validação: <b>os números exibidos no Painel Executivo batem com a planilha em todas as métricas testadas.</b> O problema desta operação não está em erro de cálculo do dashboard — está na estrutura e na governança dos dados de origem, detalhada abaixo em duas inconsistências que a planilha bruta esconde e que não apareciam em nenhuma aba até agora.</p>
+      </div>
+
+      <div class="bottleneck-card" style="margin-top:16px;">
+        <h3>Inconsistência A — 4 vendas fora do caminho "agendou → compareceu → vendeu"</h3>
+        <div class="bn-grid">
+          <div class="bn-field"><div class="lbl">1. Registro afetado</div><div class="val">17 vendas na base. Ao cruzar cada venda com <code>AGENDAMENTO</code> e <code>Cancelamento Agendamento</code>, apenas 13 seguem o caminho normal (agendou e compareceu). <b>4 vendas (ADEMIR, Sueanne, LINDALVA, Maria) não</b>.</div></div>
+          <div class="bn-field"><div class="lbl">2. Conflito identificado</div><div class="val">ADEMIR, Sueanne e LINDALVA têm <code>Cancelamento Agendamento = 1</code> (reunião marcada como cancelada) e, ainda assim, têm <code>VENDA</code> e <code>FATURAMENTO</code> preenchidos. Maria tem <code>AGENDAMENTO</code> vazio, <code>Closer</code> vazio, mas <code>VENDA = PÓS-GRADUAÇÃO</code> e <code>DATA VENDA = 12/08/2025</code> — mais de um ano antes de todo o resto do lote (vendido entre 02–05/09/2026) e com <code>ORIGEM = DS-ago25-av-qr</code>, uma campanha anterior.</div></div>
+          <div class="bn-field"><div class="lbl">3. Colunas envolvidas</div><div class="val"><code>AGENDAMENTO</code>, <code>Cancelamento Agendamento</code>, <code>VENDA</code>, <code>DATA VENDA</code>, <code>Closer</code>, <code>ORIGEM</code>.</div></div>
+          <div class="bn-field"><div class="lbl">4. Fonte</div><div class="val">Planilha <code>Página1</code>, linhas correspondentes a ADEMIR, Sueanne, LINDALVA e Maria dentro das 104 linhas com dado válido.</div></div>
+          <div class="bn-field"><div class="lbl">5. Causa provável (hipótese, não conclusão)</div><div class="val">Duas hipóteses possíveis: (a) a reunião foi remarcada e realmente aconteceu, mas o campo de cancelamento não foi atualizado; ou (b) a venda de Maria pertence a um ciclo comercial anterior (ago/2025) e foi deixada na mesma planilha por reaproveitamento de arquivo, misturando duas coortes diferentes. <b>Informação não disponível na base. A hipótese precisa ser validada antes de ser tratada como conclusão.</b></div></div>
+          <div class="bn-field"><div class="lbl">6. Correção necessária</div><div class="val">Confirmar com o time comercial se ADEMIR/Sueanne/LINDALVA de fato compareceram (e corrigir o flag de cancelamento) e se a venda de Maria deve ou não entrar no faturamento do ciclo <code>DS-PP-31ago26</code>. Enquanto não confirmado, tratar a taxa de conversão comparecimento→venda como <b>13 ÷ 40 = 32,5%</b> (caminho limpo) e não como 42,5% (que inclui as 4 vendas fora do padrão) — as duas leituras devem ser mostradas lado a lado até a confirmação.</div></div>
+        </div>
+      </div>
+
+      <div class="bottleneck-card">
+        <h3>Inconsistência B — 32 linhas de CRM "órfãs" fora da base de 104 leads</h3>
+        <div class="bn-grid">
+          <div class="bn-field"><div class="lbl">1. Registro afetado</div><div class="val">Linhas 555 a 647 da planilha bruta (índices 554–646), fora do intervalo de 104 leads analisado.</div></div>
+          <div class="bn-field"><div class="lbl">2. Conflito identificado</div><div class="val">Essas 32 linhas não têm <code>Nome</code>, <code>utm_source</code>, nem qualquer resposta do formulário — mas têm valor preenchido em <code>"Pq não agendou?"</code> (32 linhas) e, em 3 delas, também em <code>"Constatação da Lead pelo Closer"</code>. São registros de CRM sem nenhum lead identificável vinculado.</div></div>
+          <div class="bn-field"><div class="lbl">3. Colunas envolvidas</div><div class="val"><code>Pq não agendou?</code>, <code>Constatação da Lead pelo Closer</code> — todas as demais 24 colunas vazias nessas linhas.</div></div>
+          <div class="bn-field"><div class="lbl">4. Fonte</div><div class="val">Planilha <code>Página1</code>, linhas 555–647 (fora das 104 linhas com dado usadas no Painel Executivo — corretamente excluídas de lá).</div></div>
+          <div class="bn-field"><div class="lbl">5. Causa provável (hipótese, não conclusão)</div><div class="val">Padrão típico de cópia/colagem parcial de outra exportação do CRM diretamente na planilha, arrastando só 2 colunas e perdendo a referência ao lead original. <b>Informação não disponível na base. A hipótese precisa ser validada antes de ser tratada como conclusão.</b></div></div>
+          <div class="bn-field"><div class="lbl">6. Correção necessária</div><div class="val">Nenhuma ação sobre os números do painel (essas linhas já estão corretamente fora do cálculo). Ação de governança: identificar a exportação de CRM de origem e reconciliar essas 32 linhas com o lead correto, ou eliminá-las da planilha-mestra para não gerar confusão em futuras análises.</div></div>
+        </div>
+      </div>
+
+      <div class="callout warn" style="margin-top:16px;">
+        <span class="tag">Regra de leitura financeira</span>
+        <b>Faturamento contratado não é dinheiro recebido.</b> Dos R$ 193.180,00 em vendas fechadas, apenas <b>R$ 70.141,50 (36,3%)</b> entraram como entrada/cash até o momento do corte da planilha. Os outros <b>R$ 123.038,50 (63,7%)</b> dependem de parcelas futuras (majoritariamente recorrência semestral) e não devem ser tratados como caixa disponível em nenhuma projeção de fluxo de caixa.
+      </div>
+    </section>
+
+    <section id="aud-funil">
+      <div class="sec-head"><h2>2. Funil Comercial Reconstruído — 13 Etapas</h2><span class="sec-note"><span class="fun13-measured"></span>medido na base &nbsp;&nbsp;<span class="fun13-missing"></span>sem campo na base</span></div>
+      <div class="card" style="margin-bottom:14px;">
+        <h3 class="meta-h3">As 6 etapas medidas, em volume</h3>
+        <div class="funnel" id="audFunnel"></div>
+      </div>
+      <div class="card fun13-wrap">
+        <table class="fun13">
+          <thead><tr><th>#</th><th>Etapa</th><th>Responsável</th><th>Volume</th><th>Taxa</th><th>Gargalo / evidência</th></tr></thead>
+          <tbody>
+            <tr><td class="et">1</td><td><span class="fun13-missing"></span>Impressão / alcance do anúncio</td><td>Marketing</td><td class="nd">Informação não disponível na base</td><td class="nd">—</td><td class="nd">Planilha só recebe o lead a partir da submissão do formulário; dados de mídia (impressões, cliques, CPL) não fazem parte desta base.</td></tr>
+            <tr><td class="et">2</td><td><span class="fun13-missing"></span>Clique no link / abertura do formulário</td><td>Marketing</td><td class="nd">Informação não disponível na base</td><td class="nd">—</td><td class="nd">Sem instrumentação de funil de topo nesta planilha.</td></tr>
+            <tr><td class="et">3</td><td><span class="fun13-measured"></span>Formulário completo — Lead capturado</td><td>Marketing</td><td class="num">104</td><td class="num">base 100%</td><td>Etapa inicial mensurável. <code>utm_source</code> presente em 100% dos leads.</td></tr>
+            <tr><td class="et">4</td><td><span class="fun13-missing"></span>Primeiro contato humano com o lead</td><td>SDR</td><td class="nd">Informação não disponível na base</td><td class="nd">—</td><td class="nd">Não existe timestamp de primeiro contato nem SLA de resposta registrado.</td></tr>
+            <tr><td class="et">5</td><td><span class="fun13-missing"></span>Qualificação MQL / SQL pelo SDR</td><td>SDR</td><td class="nd">Informação não disponível na base</td><td class="nd">—</td><td class="nd"><b>Gargalo 1.</b> Não existe campo de SDR. A classificação que existe (<code>Constatação da Lead pelo Closer</code>) é feita pelo closer, na maioria das vezes já dentro da reunião de venda.</td></tr>
+            <tr><td class="et">6</td><td><span class="fun13-measured"></span>Agendamento realizado</td><td>SDR / Closer</td><td class="num">67 / 104</td><td class="num">64,4%</td><td>67 dos 104 leads chegam a ter uma data de reunião marcada.</td></tr>
+            <tr><td class="et">7</td><td><span class="fun13-missing"></span>Confirmação / lembrete pré-reunião</td><td>SDR</td><td class="nd">Informação não disponível na base</td><td class="nd">—</td><td class="nd">Sem campo de confirmação — o cancelamento só é registrado depois do fato.</td></tr>
+            <tr><td class="et">8</td><td><span class="fun13-measured"></span>Cancelamento / no-show</td><td>SDR / Closer</td><td class="num">27 / 67</td><td class="num">40,3%</td><td><b>Gargalo 2.</b> 4 em cada 10 reuniões marcadas não acontecem.</td></tr>
+            <tr><td class="et">9</td><td><span class="fun13-measured"></span>Comparecimento à reunião</td><td>Closer</td><td class="num">40 / 67</td><td class="num">59,7%</td><td>Taxa de comparecimento (show rate) sobre agendados.</td></tr>
+            <tr><td class="et">10</td><td><span class="fun13-missing"></span>Diagnóstico / descoberta conduzido</td><td>Closer</td><td class="nd">Informação não disponível na base</td><td class="nd">—</td><td class="nd">Sem campo próprio — mistura-se com "Constatação da Lead".</td></tr>
+            <tr><td class="et">11</td><td><span class="fun13-missing"></span>Proposta apresentada</td><td>Closer</td><td class="nd">Informação não disponível na base</td><td class="nd">—</td><td class="nd">Sem registro de proposta enviada/aceita/recusada.</td></tr>
+            <tr><td class="et">12</td><td><span class="fun13-missing"></span>Objeção / motivo de não fechamento pós-reunião</td><td>Closer</td><td class="nd">Informação não disponível na base</td><td class="nd">27 sem motivo</td><td><b>Gargalo 2 (núcleo).</b> Dos 40 que compareceram, 27 não compraram e nenhum campo estruturado registra por quê. <code>Pq não agendou?</code> só cobre quem nunca chegou a agendar.</td></tr>
+            <tr><td class="et">13</td><td><span class="fun13-measured"></span>Venda fechada</td><td>Closer</td><td class="num">17 / 104</td><td class="num">16,3% do lead</td><td>17 contratos, R$ 193.180,00 contratados, R$ 70.141,50 em cash — dos quais 4 vendas fora do caminho padrão (ver Inconsistência A).</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="meta-p" style="margin-top:10px;">Das 13 etapas de um funil comercial completo, esta base mede diretamente <b>6</b> (etapas 3, 6, 8, 9, 12-parcial e 13) e não tem nenhum campo para <b>7</b>. As etapas sem dado não são "zero" nem "não relevante" — são pontos cegos: a operação pode estar perdendo receita exatamente ali, sem que ninguém veja.</p>
+    </section>
+
+    <section id="aud-gargalos">
+      <div class="sec-head"><h2>3. Os 3 Gargalos Críticos</h2><span class="sec-note">evidência, hipótese, o que falta e o que fazer — nessa ordem</span></div>
+
+      <div class="bottleneck-card">
+        <h3>Gargalo 1 — Governança de classificação: não existe SDR, e a régua de qualificação é subjetiva <span class="sev sev-critico">Crítico</span></h3>
+        <div class="bn-grid">
+          <div class="bn-field"><div class="lbl">Evidência</div><div class="val"><span class="stat">49,0%</span> da base (51 de 104 leads) não tem nenhuma "Constatação da Lead" registrada. Ao cruzar com Closer, <b>50 desses 51</b> pertencem ao grupo "Não atribuído" (sem closer designado) — só 1 caso é de um lead que teve closer (A) e mesmo assim ficou sem classificação. Entre os leads que <i>tiveram</i> closer, a taxa de preenchimento é de 98–100%.</div></div>
+          <div class="bn-field"><div class="lbl">Hipótese</div><div class="val">A lacuna de classificação não é, na maior parte, negligência do closer — é ausência de atribuição de dono na etapa anterior (agendamento sem closer vinculado, 14 casos / 20,9% dos agendamentos). <b>Informação não disponível na base. A hipótese precisa ser validada antes de ser tratada como conclusão.</b></div></div>
+          <div class="bn-field"><div class="lbl">O que falta</div><div class="val">Campo de SDR responsável, timestamp de qualificação e um critério objetivo de MQL/SQL aplicado <b>antes</b> do agendamento — hoje o único rótulo existente ("MQL", "QUALIFICADA", "POTENCIAL", "???", "DESQUALIFICADA") é preenchido pelo closer, depois do contato, sem escala numérica.</div></div>
+          <div class="bn-field"><div class="lbl">Ação / meta / prazo</div><div class="val">Implantar o campo de SDR e o modelo de lead scoring de 100 pontos (seção 8) já no próximo ciclo. <b>Meta:</b> 100% dos leads agendados com closer atribuído no ato do agendamento (hoje 79,1%). <b>Prazo:</b> 15 dias corridos para o campo existir no CRM; 30 dias para atingir a meta de atribuição.</div></div>
+        </div>
+        <div class="callout crit" style="margin-top:14px;"><span class="tag">Frase-síntese deste gargalo</span>Sem parâmetros objetivos, não existem métricas gerenciais confiáveis; existem apenas rótulos subjetivos.</div>
+      </div>
+
+      <div class="bottleneck-card">
+        <h3>Gargalo 2 — Comparecimento e pós-reunião sem motivo de perda registrado <span class="sev sev-critico">Crítico</span></h3>
+        <div class="bn-grid">
+          <div class="bn-field"><div class="lbl">Evidência</div><div class="val"><span class="stat">40,3%</span> das reuniões agendadas são canceladas (27 de 67). Dos <span class="stat">40 que compareceram, 27 (67,5%) não compraram</span> — e nenhum campo da planilha registra o motivo. Das 27, apenas 20 têm algum rótulo de "Constatação" (8 MQL, 6 "???", 2 POTENCIAL, 2 DESQUALIFICADA, 2 QUALIFICADA); <b>7 compareceram e nem chegaram a ser classificados.</b></div></div>
+          <div class="bn-field"><div class="lbl">Hipótese</div><div class="val">Preço, timing de decisão, falta de condição de pagamento ou objeção específica de produto são explicações plausíveis para a não-conversão pós-reunião — mas nenhuma delas está registrada linha a linha. <b>Informação não disponível na base. A hipótese precisa ser validada antes de ser tratada como conclusão.</b></div></div>
+          <div class="bn-field"><div class="lbl">O que falta</div><div class="val">Campo obrigatório de "Motivo de perda pós-reunião" (categórico e fechado, preenchido pelo closer ao final de toda reunião sem venda) e confirmação de presença antes da própria reunião (etapa 7 do funil, hoje também sem dado).</div></div>
+          <div class="bn-field"><div class="lbl">Ação / meta / prazo</div><div class="val">Criar o campo de motivo de perda com taxonomia fechada (ver Gargalo 3) e torná-lo obrigatório no CRM para fechar qualquer reunião sem venda. <b>Meta:</b> elevar comparecimento de 59,7% para 75% e reduzir para zero as reuniões sem classificação de desfecho. <b>Prazo:</b> 30 dias.</div></div>
+        </div>
+      </div>
+
+      <div class="bottleneck-card">
+        <h3>Gargalo 3 — Taxonomia não padronizada de motivos ("Pq não agendou?") <span class="sev sev-alto">Alto</span></h3>
+        <div class="bn-grid">
+          <div class="bn-field"><div class="lbl">Evidência</div><div class="val">O campo "Pq não agendou?" mistura dois eventos diferentes no mesmo texto livre: motivo de <b>nunca ter agendado</b> (37 casos) e motivo de <b>cancelamento pós-agendamento</b> (15 casos adicionais, incluindo "No-show" e "Duplicado" aplicados a leads que já tinham data marcada). Há também variação de grafia (<code>"NÚMERO INCORRETO"</code> vs. <code>"número incorreto"</code>) nas 32 linhas órfãs fora da base.</div></div>
+          <div class="bn-field"><div class="lbl">Hipótese</div><div class="val">O campo foi criado para um único propósito e passou a ser reaproveitado pelo time para registrar qualquer desfecho negativo, por falta de um campo dedicado a cancelamento/no-show pós-agendamento. <b>Informação não disponível na base. A hipótese precisa ser validada antes de ser tratada como conclusão.</b></div></div>
+          <div class="bn-field"><div class="lbl">O que falta</div><div class="val">Dois campos fechados e separados: (1) motivo de não-agendamento e (2) motivo de cancelamento/no-show — com lista fixa de opções, sem texto livre.</div></div>
+          <div class="bn-field"><div class="lbl">Ação / meta / prazo</div><div class="val">Consolidar os motivos atuais em <b>10 categorias fechadas</b> com submotivos (ex.: "Financeiro" → sem dinheiro / sem cartão / precisa parcelar; "Sem retorno" → não atendeu / não respondeu WhatsApp / número incorreto) e migrar os 52 registros de texto livre existentes para essas categorias. <b>Prazo:</b> 15 dias para o desenho da taxonomia, 30 dias para a migração histórica.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="aud-sdr">
+      <div class="sec-head"><h2>4. Painel de Performance do SDR</h2></div>
+      <div class="card">
+        <p class="meta-p"><b>Informação não disponível na base. A hipótese precisa ser validada antes de ser tratada como conclusão.</b> Não existe, em nenhuma das 26 colunas da planilha, um campo que identifique o SDR responsável por um lead, o horário do primeiro contato, o SLA de resposta ou o resultado da triagem antes do agendamento. Qualquer número de "performance de SDR" apresentado sem essa coluna seria inventado — por isso esta seção permanece, propositalmente, sem gráfico. A criação desse campo é a ação nº 1 do plano de 30 dias (seção 12).</p>
+      </div>
+    </section>
+
+    <section id="aud-closer">
+      <div class="sec-head"><h2>5. Análise por Closer</h2><span class="sec-note">leia com cautela — volumes pequenos, ver aviso abaixo</span></div>
+      <div class="grid-2">
+        <div class="card"><h3 class="meta-h3">Agendamentos por closer</h3><div class="barlist" id="audCloserBars"></div></div>
+        <div class="card"><h3 class="meta-h3">Receita por closer</h3><div class="barlist" id="audCloserRevBars"></div></div>
+      </div>
+      <div class="card table-wrap" style="margin-top:14px;">
+        <table class="meta-table">
+          <thead><tr><th>Closer</th><th class="num-col">Agend.</th><th class="num-col">Cancel.</th><th class="num-col">% cancel.</th><th class="num-col">Vendas</th><th class="num-col">Conv. s/ agend.</th><th class="num-col">Receita</th></tr></thead>
+          <tbody>
+            <tr><td>A</td><td class="num-col num">28</td><td class="num-col num">12</td><td class="num-col num">42,9%</td><td class="num-col num">6</td><td class="num-col num">21,4%</td><td class="num-col num">R$ 67.656,00</td></tr>
+            <tr><td>B</td><td class="num-col num">18</td><td class="num-col num">4</td><td class="num-col num">22,2%</td><td class="num-col num">8</td><td class="num-col num">44,4%</td><td class="num-col num">R$ 96.324,00</td></tr>
+            <tr><td>C</td><td class="num-col num">3</td><td class="num-col num">3</td><td class="num-col num">100,0%</td><td class="num-col num">1</td><td class="num-col num">33,3%</td><td class="num-col num">R$ 12.000,00</td></tr>
+            <tr><td>D</td><td class="num-col num">4</td><td class="num-col num">1</td><td class="num-col num">25,0%</td><td class="num-col num">1</td><td class="num-col num">25,0%</td><td class="num-col num">R$ 7.200,00</td></tr>
+            <tr><td>Não atribuído</td><td class="num-col num">14</td><td class="num-col num">7</td><td class="num-col num">50,0%</td><td class="num-col num">1</td><td class="num-col num">7,1%</td><td class="num-col num">R$ 10.000,00</td></tr>
+          </tbody>
+        </table>
+        <div class="callout warn" style="margin-top:14px;">
+          <span class="tag">Não classifique com base apenas em percepção subjetiva</span>
+          Closer C tem 100% de cancelamento — mas sobre uma base de <b>3 agendamentos</b>. Uma única reunião a mais ou a menos muda a taxa em mais de 30 pontos percentuais. O mesmo vale para D (4 agendamentos). Não é evidência suficiente para ranquear C e D contra A e B: é volume estatisticamente insuficiente para qualquer conclusão de performance individual. A comparação confiável hoje é entre A (28 agend.) e B (18 agend.), onde B converte 2x mais (44,4% vs. 21,4%) — mas mesmo aqui, sem o campo de motivo de perda (Gargalo 2), não dá para saber se a diferença vem de abordagem do closer, de qualidade do lead que cada um recebe, ou de ambos.
+        </div>
+        <p class="meta-p" style="margin-top:10px;">Reforço de governança: <b>o closer recebe o SQL previamente qualificado, valida o diagnóstico e conduz a oportunidade até a venda ou perda</b> — a diferença de conversão entre closers só pode ser atribuída com justiça ao closer depois que a qualificação de entrada (Gargalo 1) deixar de ser feita por eles próprios.</p>
+      </div>
+    </section>
+
+    <section id="aud-origem">
+      <div class="sec-head"><h2>6. Análise por Origem (utm_source)</h2></div>
+      <div class="card" style="margin-bottom:14px;"><h3 class="meta-h3">Leads x vendas por origem</h3><div class="barlist" id="audOrigemBars"></div></div>
+      <div class="card table-wrap">
+        <table class="meta-table">
+          <thead><tr><th>Origem</th><th class="num-col">Leads</th><th class="num-col">Agend.</th><th class="num-col">Tx. agend.</th><th class="num-col">Vendas</th><th class="num-col">Tx. conv.</th><th class="num-col">Receita</th></tr></thead>
+          <tbody>
+            <tr><td>DS-PP-31ago26-av-hotwebinar</td><td class="num-col num">60</td><td class="num-col num">42</td><td class="num-col num">70,0%</td><td class="num-col num">9</td><td class="num-col num">15,0%</td><td class="num-col num">R$ 99.310,00</td></tr>
+            <tr><td>DS-PP-31ago26-grupos</td><td class="num-col num">16</td><td class="num-col num">6</td><td class="num-col num">37,5%</td><td class="num-col num">2</td><td class="num-col num">12,5%</td><td class="num-col num">R$ 20.214,00</td></tr>
+            <tr><td>DS-PP-31ago26-api-whats</td><td class="num-col num">15</td><td class="num-col num">8</td><td class="num-col num">53,3%</td><td class="num-col num">1</td><td class="num-col num">6,7%</td><td class="num-col num">R$ 12.000,00</td></tr>
+            <tr><td>DS-PP-31ago26-av-qr</td><td class="num-col num">10</td><td class="num-col num">8</td><td class="num-col num">80,0%</td><td class="num-col num">4</td><td class="num-col num">40,0%</td><td class="num-col num">R$ 48.642,00</td></tr>
+            <tr><td>DS-PP-31ago26-pg-grav</td><td class="num-col num">3</td><td class="num-col num">3</td><td class="num-col num">100,0%</td><td class="num-col num">1</td><td class="num-col num">33,3%</td><td class="num-col num">R$ 13.014,00</td></tr>
+          </tbody>
+        </table>
+        <p class="meta-p" style="margin-top:10px;">Nota de rótulo: a coluna do CRM chamada <code>ORIGEM</code> só tem 17 valores preenchidos (um por venda) e não cobre os outros 87 leads — por isso a tabela acima usa <code>utm_source</code>, preenchida em 100% da base, que é o campo correto para comparar leads, agendamentos e vendas na mesma régua. As origens "av-qr" (10 leads) e "pg-grav" (3 leads) têm as melhores taxas de conversão, mas amostra pequena: como já registrado na aba de Metodologia, leia essas duas como direção a testar, não como conclusão estatística.</p>
+      </div>
+    </section>
+
+    <section id="aud-scoring">
+      <div class="sec-head"><h2>7 · 8. Auditoria do Formulário &amp; Lead Scoring</h2></div>
+      <div class="card">
+        <p class="meta-p">A auditoria completa do formulário atual — as 7 lacunas encontradas e a estrutura recomendada de 12 seções — já está documentada na aba <b>"Diagnóstico &amp; Recomendações"</b> desta mesma planilha; não é repetida aqui para evitar divergência entre duas versões do mesmo conteúdo. O modelo de lead scoring de 100 pontos também está naquela aba, com o termômetro de qualificação (0–39 não elegível, 40–59 MQL, 60–79 SQL, 80–100 prioridade).</p>
+        <div class="callout" style="margin-top:2px;">
+          <span class="tag">Disclaimer obrigatório sobre o modelo de score</span>
+          Inicialmente, trata-se de um lead scoring ponderado. A Teoria de Resposta ao Item exige base histórica e calibração estatística da dificuldade e discriminação das perguntas. Com 17 vendas na base atual, não há volume para calibrar estatisticamente peso nenhum — os pesos de 40/15/15/10/10/5/5 pontos são uma <b>proposta de ponto de partida</b>, não um modelo validado.
+        </div>
+        <h3 class="meta-h3" style="margin-top:18px;">Plano de recalibragem — 30 / 60 / 90 dias</h3>
+        <ul class="meta-list">
+          <li><b>30 dias:</b> aplicar o score em todo lead novo, sem alterar peso nenhum ainda — o objetivo é só começar a coletar score previsto x resultado real.</li>
+          <li><b>60 dias:</b> primeira leitura direcional — comparar o score médio de quem comprou vs. quem não comprou nesse período; ainda amostra pequena, mas já indica se algum peso está claramente fora da realidade.</li>
+          <li><b>90 dias:</b> com massa mínima acumulada (soma do ciclo atual + os próximos dois), recalibrar os pesos por regressão simples sobre conversão real e só então considerar qualquer discussão de item-response theory — nunca antes disso.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="aud-esteira">
+      <div class="sec-head"><h2>9. Esteira de Produtos — Regras Observadas na Base</h2><span class="sec-note">evidenciado pelas 17 vendas reais</span></div>
+      <div class="card table-wrap">
+        <table class="meta-table">
+          <thead><tr><th>Produto</th><th class="num-col">Vendas</th><th class="num-col">Ticket observado</th><th>Papel na esteira</th></tr></thead>
+          <tbody>
+            <tr><td>Nível 1</td><td class="num-col num">3</td><td class="num-col num">R$ 6.000 – R$ 7.200</td><td>Entrada</td></tr>
+            <tr><td>Níveis 1 &amp; 2</td><td class="num-col num">1</td><td class="num-col num">R$ 9.600</td><td>Upsell de Nível 1</td></tr>
+            <tr><td>Completa</td><td class="num-col num">1</td><td class="num-col num">R$ 12.000</td><td>Ascensão / formação integral</td></tr>
+            <tr><td>Pós-Graduação</td><td class="num-col num">12 (70,6%)</td><td class="num-col num">R$ 10.000 – R$ 13.014</td><td>Produto principal do ciclo atual</td></tr>
+          </tbody>
+        </table>
+        <p class="meta-p" style="margin-top:12px;">A esteira observada é consistente com uma lógica de entrada → upsell → ascensão, mas com dados reais só nas pontas: 70,6% do faturamento vem de um único produto (Pós-Graduação), o que concentra risco comercial num só SKU. A "Mentoria individual premium (R$ 37.000)" citada como rota de cross-sell na aba de Diagnóstico é uma <b>proposta de direcionamento, não uma venda observada</b> — nenhuma das 17 vendas desta base corresponde a esse valor ou produto; deve ser lida como hipótese de esteira, não como resultado.</p>
+        <p class="meta-p"><b>Informação não disponível na base:</b> não existe campo de downsell, renovação ou reativação de aluno — não há como saber, com os dados atuais, se algum dos 17 compradores é recorrente ou se algum dos 87 não-compradores é ex-aluno em reativação.</p>
+      </div>
+    </section>
+
+    <section id="aud-cenarios">
+      <div class="sec-head"><h2>10. Cenários Financeiros de Comparecimento</h2><span class="sec-note">projeção ilustrativa — não é previsão</span></div>
+      <div class="card">
+        <p class="meta-p">Simulação: mantendo constante a taxa de conversão comparecimento→venda observada (42,5%, incluindo as 4 vendas fora do caminho padrão — ver Inconsistência A) e elevando apenas a taxa de comparecimento sobre os 67 agendamentos atuais.</p>
+        <div class="scn-grid" style="margin-top:14px;">
+          <div class="scn-card">
+            <div class="scn-pct">70%</div>
+            <div class="scn-lbl">taxa de comparecimento (hoje: 59,7%)</div>
+            <div class="scn-row"><span>Comparecimentos</span><b>≈ 47</b></div>
+            <div class="scn-row"><span>Vendas extra (est.)</span><b>+3</b></div>
+            <div class="scn-row"><span>Receita extra (est.)</span><b>+R$ 34.090,59</b></div>
+            <div class="barrow-track" style="margin-top:10px;"><div class="barrow-fill" style="width:50%; background:var(--series-1);"></div></div>
+          </div>
+          <div class="scn-card">
+            <div class="scn-pct">75%</div>
+            <div class="scn-lbl">taxa de comparecimento</div>
+            <div class="scn-row"><span>Comparecimentos</span><b>≈ 50</b></div>
+            <div class="scn-row"><span>Vendas extra (est.)</span><b>+4</b></div>
+            <div class="scn-row"><span>Receita extra (est.)</span><b>+R$ 45.454,12</b></div>
+            <div class="barrow-track" style="margin-top:10px;"><div class="barrow-fill" style="width:66.7%; background:var(--warning);"></div></div>
+          </div>
+          <div class="scn-card">
+            <div class="scn-pct">80%</div>
+            <div class="scn-lbl">taxa de comparecimento</div>
+            <div class="scn-row"><span>Comparecimentos</span><b>≈ 54</b></div>
+            <div class="scn-row"><span>Vendas extra (est.)</span><b>+6</b></div>
+            <div class="scn-row"><span>Receita extra (est.)</span><b>+R$ 68.181,18</b></div>
+            <div class="barrow-track" style="margin-top:10px;"><div class="barrow-fill" style="width:100%; background:var(--good);"></div></div>
+          </div>
+        </div>
+        <p class="meta-p" style="margin-top:14px;">Fórmula: comparecimentos = 67 × taxa; vendas extra = (comparecimentos − 40) × 42,5%, arredondado; receita extra = vendas extra × ticket médio (R$ 11.363,53). Esta é uma projeção de sensibilidade, não uma meta comprometida — ela só se sustenta se a causa da falta de comparecimento (Gargalo 2) for corrigida sem piorar a qualidade do lead que chega até a reunião.</p>
+      </div>
+    </section>
+
+    <section id="aud-priorizacao">
+      <div class="sec-head"><h2>11. Priorização dos 3 Gargalos</h2></div>
+      <div class="card table-wrap">
+        <table class="meta-table">
+          <thead><tr><th>Gargalo</th><th>Impacto</th><th>Urgência</th><th>Esforço</th><th>Dono</th><th>Prazo</th></tr></thead>
+          <tbody>
+            <tr><td>1 · Governança / classificação sem SDR</td><td><span class="sev sev-critico">Alto</span></td><td><span class="sev sev-critico">Alta</span></td><td><span class="sev sev-alto">Médio</span></td><td>Head Comercial</td><td>30 dias</td></tr>
+            <tr><td>2 · Comparecimento e motivo de perda pós-reunião</td><td><span class="sev sev-critico">Alto</span></td><td><span class="sev sev-critico">Alta</span></td><td><span class="sev sev-medio">Baixo</span></td><td>Closers + Head Comercial</td><td>30 dias</td></tr>
+            <tr><td>3 · Taxonomia de motivos não padronizada</td><td><span class="sev sev-alto">Médio</span></td><td><span class="sev sev-alto">Média</span></td><td><span class="sev sev-medio">Baixo</span></td><td>Head Comercial</td><td>15–30 dias</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="aud-plano30">
+      <div class="sec-head"><h2>12. Plano de Ação — 30 Dias</h2></div>
+      <div class="card table-wrap">
+        <table class="meta-table">
+          <thead><tr><th>Semana</th><th>Ação</th><th>Dono</th><th>Entregável</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Criar no CRM os campos: SDR responsável, motivo de perda pós-reunião (fechado), motivo de não-agendamento consolidado em 10 categorias</td><td>Head Comercial + CRM</td><td>3 campos novos ativos</td></tr>
+            <tr><td>1</td><td>Confirmar com o time as 4 vendas fora do caminho padrão (Inconsistência A) e a origem das 32 linhas órfãs (Inconsistência B)</td><td>Head Comercial</td><td>Planilha corrigida ou anotada</td></tr>
+            <tr><td>2</td><td>Treinar SDR/closers na nova taxonomia e no preenchimento obrigatório dos 3 campos novos</td><td>Head Comercial</td><td>Treinamento realizado + checklist</td></tr>
+            <tr><td>2</td><td>Ativar o lead scoring de 100 pontos em todo lead novo (sem mexer nos pesos ainda)</td><td>SDR</td><td>100% dos leads novos com score</td></tr>
+            <tr><td>3</td><td>Auditoria semanal: % de agendamentos com closer atribuído, % de reuniões com motivo de perda preenchido</td><td>Head Comercial</td><td>Relatório semanal</td></tr>
+            <tr><td>3</td><td>Ação de comparecimento: confirmação de presença 24h e 2h antes de cada reunião marcada</td><td>SDR</td><td>Processo de confirmação ativo</td></tr>
+            <tr><td>4</td><td>Primeira leitura: comparar taxa de comparecimento e de classificação pré/pós as mudanças</td><td>Head Comercial</td><td>Relatório de 30 dias</td></tr>
+            <tr><td>4</td><td>Corrigir o dashboard com os 5 itens da lista de correções (seção 13)</td><td>RevOps / Analytics</td><td>Painel atualizado</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="aud-entregaveis">
+      <div class="sec-head"><h2>13. Entregáveis Finais</h2></div>
+
+      <div class="exec-card">
+        <div class="sec-head" style="margin-bottom:10px;"><h2 style="font-size:14px;">Resumo Executivo — para o CEO</h2></div>
+        <p><b>Os números do painel comercial estão corretos.</b> Validamos cada métrica direto na planilha — leads, agendamentos, cancelamentos, comparecimentos, vendas e faturamento batem exatamente com o CRM. O problema não é cálculo, é processo: a operação não tem SDR nem qualificação padronizada antes da reunião (49% dos leads seguem sem classificação), 4 em cada 10 reuniões marcadas não acontecem, e quando alguém comparece e não compra, não existe registro do motivo em 27 dos 40 casos.</p>
+        <p>Encontramos ainda duas inconsistências pontuais na base — 4 vendas registradas fora do fluxo normal de agendamento (uma delas de um ciclo comercial anterior, de ago/2025) e 32 linhas de CRM sem lead identificável — que precisam de confirmação do time antes de qualquer correção definitiva no relatório.</p>
+        <p>A boa notícia: são gargalos de <b>processo e de campo no CRM</b>, não de produto nem de oferta. Fechar reuniões sem motivo registrado e elevar o comparecimento de 59,7% para 75% no próximo ciclo pode representar, mantendo a taxa de conversão atual, algo entre <b>R$ 34 mil e R$ 68 mil</b> em receita adicional — uma estimativa de sensibilidade, não uma meta comprometida. O plano de 30 dias ataca isso com 3 campos novos de CRM, treinamento do time e auditoria semanal.</p>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <h3 class="meta-h3">Roteiro de Apresentação — 5 Minutos</h3>
+        <div class="script-block">
+          <div class="script-step"><div class="script-time">0:00</div><div class="script-body"><b>Abertura</b><span>"Validamos todos os números do painel direto na planilha — eles batem. O que vamos discutir hoje não é erro de dashboard, é processo comercial."</span></div></div>
+          <div class="script-step"><div class="script-time">0:45</div><div class="script-body"><b>O funil</b><span>104 leads → 67 agendamentos (64,4%) → 40 comparecimentos (59,7%) → 17 vendas (25,4% sobre agendado). Mostrar onde cada etapa perde volume.</span></div></div>
+          <div class="script-step"><div class="script-time">1:45</div><div class="script-body"><b>Gargalo 1 — Governança</b><span>Não existe SDR na base. 49% dos leads sem classificação — e quase toda essa lacuna está nos 14 agendamentos sem closer, não em negligência do closer.</span></div></div>
+          <div class="script-step"><div class="script-time">2:45</div><div class="script-body"><b>Gargalo 2 — O ponto cego real</b><span>27 pessoas compareceram e não compraram. Zero motivo registrado em 7 delas. Esse é o maior buraco de dado da operação hoje.</span></div></div>
+          <div class="script-step"><div class="script-time">3:45</div><div class="script-body"><b>O plano de 30 dias</b><span>3 campos novos de CRM, treinamento, confirmação de presença, auditoria semanal.</span></div></div>
+          <div class="script-step"><div class="script-time">4:30</div><div class="script-body"><b>Fechamento</b><span>"Não estamos pedindo mais investimento em mídia. Estamos pedindo 30 dias para parar de perder informação que já existe, mas não está sendo registrada."</span></div></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <h3 class="meta-h3">10 Perguntas e Respostas para o Board</h3>
+
+        <details class="qsec">
+          <summary>1. Os números deste painel são confiáveis?</summary>
+          <div class="qsec-body"><p class="qsec-q">Sim. Recalculamos leads, agendamentos, cancelamentos, comparecimentos, vendas e faturamento direto na planilha original e todos batem com o que está no painel.</p></div>
+        </details>
+        <details class="qsec">
+          <summary>2. Por que a taxa de conversão parece baixa (16,3% de lead a venda)?</summary>
+          <div class="qsec-body"><p class="qsec-q">A maior perda não está na intenção do lead, está no processo: 40,3% de cancelamento de reunião e 67,5% de "comparece e não compra" sem motivo registrado. Corrigir esses dois pontos tem mais alavancagem do que gerar mais leads hoje.</p></div>
+        </details>
+        <details class="qsec">
+          <summary>3. Temos um SDR hoje?</summary>
+          <div class="qsec-body"><p class="qsec-q">Não há campo de SDR na base. Não é possível afirmar se existe SDR na operação sem essa informação — <b>informação não disponível na base</b>, e essa é exatamente a lacuna a fechar.</p></div>
+        </details>
+        <details class="qsec">
+          <summary>4. Algum closer está performando mal?</summary>
+          <div class="qsec-body"><p class="qsec-q">Não dá para afirmar isso com responsabilidade. C e D têm 3 e 4 agendamentos — amostra pequena demais para julgar. Entre A e B (28 e 18 agendamentos), B converte mais, mas sem saber se A recebe leads piores, a diferença não pode ser atribuída só ao closer.</p></div>
+        </details>
+        <details class="qsec">
+          <summary>5. Por que 14 agendamentos não têm closer?</summary>
+          <div class="qsec-body"><p class="qsec-q">É uma lacuna de atribuição no CRM no momento do agendamento — 20,9% dos agendamentos. É também onde está concentrada quase toda a falta de classificação de lead (Gargalo 1).</p></div>
+        </details>
+        <details class="qsec">
+          <summary>6. Quanto já vendemos e quanto já recebemos, de fato?</summary>
+          <div class="qsec-body"><p class="qsec-q">R$ 193.180,00 contratados; R$ 70.141,50 (36,3%) já recebidos como entrada. O restante depende de parcelas futuras e não é caixa disponível hoje.</p></div>
+        </details>
+        <details class="qsec">
+          <summary>7. O lead scoring proposto é validado estatisticamente?</summary>
+          <div class="qsec-body"><p class="qsec-q">Não. É um lead scoring ponderado inicial. Calibração estatística de verdade (tipo Teoria de Resposta ao Item) exige base histórica que ainda não temos com apenas 17 vendas.</p></div>
+        </details>
+        <details class="qsec">
+          <summary>8. Existem inconsistências na planilha que precisam de atenção?</summary>
+          <div class="qsec-body"><p class="qsec-q">Sim, duas: 4 vendas fora do fluxo padrão de agendamento (uma delas de um ciclo anterior, ago/2025) e 32 linhas de CRM sem lead identificável. Ambas precisam de confirmação do time comercial.</p></div>
+        </details>
+        <details class="qsec">
+          <summary>9. Quanto podemos ganhar melhorando o comparecimento?</summary>
+          <div class="qsec-body"><p class="qsec-q">Numa projeção de sensibilidade (não uma meta comprometida), elevar de 59,7% para 75% de comparecimento pode gerar algo em torno de R$ 45 mil adicionais, mantendo a taxa de conversão atual.</p></div>
+        </details>
+        <details class="qsec">
+          <summary>10. Qual é a única coisa a decidir hoje?</summary>
+          <div class="qsec-body"><p class="qsec-q">Aprovar a criação de 3 campos no CRM (SDR, motivo de perda pós-reunião, taxonomia fechada de não-agendamento) e o treinamento do time em 30 dias. É a ação de menor esforço com maior efeito neste diagnóstico.</p></div>
+        </details>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <h3 class="meta-h3">Lista de Correções do Dashboard</h3>
+        <div class="table-wrap">
+          <table class="meta-table">
+            <thead><tr><th></th><th>Item</th><th>Tipo</th><th>Ação recomendada</th></tr></thead>
+            <tbody>
+              <tr><td><span class="corr-sev" style="background:var(--warning);"></span></td><td>4 vendas fora do caminho agendamento→comparecimento</td><td>Confirmação necessária</td><td>Validar com o time e, se confirmado, mostrar as duas leituras de conversão (13/40 = 32,5% vs. 17/40 = 42,5%) lado a lado</td></tr>
+              <tr><td><span class="corr-sev" style="background:var(--warning);"></span></td><td>Venda de Maria com data de 12/08/2025</td><td>Confirmação necessária</td><td>Confirmar se pertence ao ciclo atual antes de manter no faturamento do painel</td></tr>
+              <tr><td><span class="corr-sev" style="background:var(--good);"></span></td><td>Disclaimer do lead scoring ("não é TRI")</td><td>Ausente no texto atual</td><td>Adicionar o texto obrigatório na aba Diagnóstico, próximo ao termômetro de score</td></tr>
+              <tr><td><span class="corr-sev" style="background:var(--good);"></span></td><td>Rótulo "ORIGEM" vs. utm_source</td><td>Clareza</td><td>Deixar explícito no título da tabela que a origem usada é utm_source, não a coluna ORIGEM do CRM (já anotado na aba Metodologia, reforçar no Painel Executivo)</td></tr>
+              <tr><td><span class="corr-sev" style="background:var(--good);"></span></td><td>27 comparecimentos sem venda e sem motivo</td><td>Campo ausente no CRM</td><td>Criar campo de motivo de perda pós-reunião e retroalimentar o painel assim que existir</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <h3 class="meta-h3">Tabela Fato / Hipótese / Recomendação</h3>
+        <div class="table-wrap">
+          <table class="meta-table">
+            <thead><tr><th>Fato (validado na planilha)</th><th>Hipótese (a validar)</th><th>Recomendação</th></tr></thead>
+            <tbody>
+              <tr><td>49,0% da base sem "Constatação da Lead"; 50 dos 51 casos são leads sem closer atribuído</td><td>A lacuna é de atribuição de dono, não de negligência de classificação</td><td>Criar campo de SDR e exigir atribuição de closer no momento do agendamento</td></tr>
+              <tr><td>40,3% de cancelamento de reunião; 67,5% de comparecimento sem venda, sem motivo em 27 casos</td><td>Causas prováveis incluem preço, timing e objeção específica — não confirmadas</td><td>Criar campo obrigatório de motivo de perda pós-reunião</td></tr>
+              <tr><td>4 vendas fora do fluxo padrão de agendamento; 1 delas datada de ago/2025</td><td>Erro de atualização de status ou mistura de coorte comercial anterior</td><td>Confirmar com o time antes de manter no faturamento do ciclo atual</td></tr>
+              <tr><td>32 linhas de CRM órfãs (sem lead identificável) fora da base analisada</td><td>Cópia parcial de outra exportação de CRM</td><td>Reconciliar ou remover da planilha-mestra</td></tr>
+              <tr><td>70,6% do faturamento concentrado em um único produto (Pós-Graduação)</td><td>Dependência de um único SKU é um risco de concentração de receita</td><td>Medir e ativar cross-sell/upsell/downsell com campos próprios de esteira</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-note">
+      <b style="color:var(--text-secondary);">Metodologia desta auditoria:</b> toda métrica foi recalculada diretamente na planilha original (<code>Página1</code>, 647 linhas, 104 com dado válido), de forma independente do JSON já usado no Painel Executivo, e comparada linha a linha. Nenhum dado externo, benchmark de mercado ou informação não presente na planilha foi usado nesta análise. Onde a base não permite responder, isto está escrito de forma explícita — nunca estimado como se fosse fato. Autoria: Head of Sales · Renata Aguiar — auditoria de dados e diagnóstico de RevOps a pedido da liderança comercial.
+    </div>
+
+  </div><!-- /tab-auditoria -->
+
+
+</div>
+
+<script>
+const DATA = {"kpi": {"total_leads": 104, "total_agend": 67, "total_cancel": 27, "total_compare": 40, "total_vendas": 17, "total_fat": 193180.0, "total_cash": 70141.5, "total_fatliq": 190702.83, "ticket_medio": 11363.529411764706}, "closer": [{"Closer_f": "A", "agendamentos": 28, "cancelamentos": 12, "vendas": 6, "receita": 67656.0, "taxa_cancel": 42.9, "taxa_conv": 21.4}, {"Closer_f": "B", "agendamentos": 18, "cancelamentos": 4, "vendas": 8, "receita": 96324.0, "taxa_cancel": 22.2, "taxa_conv": 44.4}, {"Closer_f": "C", "agendamentos": 3, "cancelamentos": 3, "vendas": 1, "receita": 12000.0, "taxa_cancel": 100.0, "taxa_conv": 33.3}, {"Closer_f": "D", "agendamentos": 4, "cancelamentos": 1, "vendas": 1, "receita": 7200.0, "taxa_cancel": 25.0, "taxa_conv": 25.0}, {"Closer_f": "Não atribuído", "agendamentos": 14, "cancelamentos": 7, "vendas": 1, "receita": 10000.0, "taxa_cancel": 50.0, "taxa_conv": 7.1}], "origem": [{"utm_source": "DS-PP-31ago26-av-hotwebinar", "leads": 60, "agendamentos": 42, "cancel": 19, "vendas": 9, "receita": 99310.0, "taxa_agend": 70.0, "taxa_conv": 15.0}, {"utm_source": "DS-PP-31ago26-grupos", "leads": 16, "agendamentos": 6, "cancel": 2, "vendas": 2, "receita": 20214.0, "taxa_agend": 37.5, "taxa_conv": 12.5}, {"utm_source": "DS-PP-31ago26-api-whats", "leads": 15, "agendamentos": 8, "cancel": 4, "vendas": 1, "receita": 12000.0, "taxa_agend": 53.3, "taxa_conv": 6.7}, {"utm_source": "DS-PP-31ago26-av-qr", "leads": 10, "agendamentos": 8, "cancel": 1, "vendas": 4, "receita": 48642.0, "taxa_agend": 80.0, "taxa_conv": 40.0}, {"utm_source": "DS-PP-31ago26-pg-grav", "leads": 3, "agendamentos": 3, "cancel": 1, "vendas": 1, "receita": 13014.0, "taxa_agend": 100.0, "taxa_conv": 33.3}], "constatacao": [{"label": "MQL", "count": 19, "pct": 35.8}, {"label": "QUALIFICADA", "count": 11, "pct": 20.8}, {"label": "POTENCIAL", "count": 10, "pct": 18.9}, {"label": "???", "count": 10, "pct": 18.9}, {"label": "DESQUALIFICADA", "count": 2, "pct": 3.8}, {"label": "Outras Formações em andamento", "count": 1, "pct": 1.9}], "pq_nao_agendou": [{"label": "Não respondeu", "count": 18, "pct": 48.6}, {"label": "Duplicado", "count": 5, "pct": 13.5}, {"label": "Futuro", "count": 3, "pct": 8.1}, {"label": "Sem condições financeiras", "count": 2, "pct": 5.4}, {"label": "Tempo", "count": 1, "pct": 2.7}, {"label": "Não recebeu MSG API", "count": 1, "pct": 2.7}, {"label": "Ficamos de ligar e não ligamos - Brenda", "count": 1, "pct": 2.7}, {"label": "Em contato", "count": 1, "pct": 2.7}, {"label": "Não iniciamos o contato", "count": 1, "pct": 2.7}, {"label": "Aluna", "count": 1, "pct": 2.7}, {"label": "Não quis dar sequência", "count": 1, "pct": 2.7}, {"label": "Whatsapp inválido", "count": 1, "pct": 2.7}, {"label": "No-show", "count": 1, "pct": 2.7}], "venda_tipo": [{"label": "PÓS-GRADUAÇÃO", "count": 12, "pct": 70.6}, {"label": "NÍVEL 1", "count": 3, "pct": 17.6}, {"label": "NÍVEIS 1 & 2", "count": 1, "pct": 5.9}, {"label": "COMPLETA", "count": 1, "pct": 5.9}], "forma_pagto": [{"label": "RECORRÊNCIA SEMESTRAL", "count": 9, "pct": 64.3}, {"label": "CARTÃO S/ JUROS", "count": 3, "pct": 21.4}, {"label": "CARTÃO À VISTA", "count": 1, "pct": 7.1}, {"label": "ENTRADA + CARTÃO C/ JUROS", "count": 1, "pct": 7.1}], "area_saude": [{"label": "Já sou *experiente* na área\n(2 anos+)", "count": 63, "pct": 60.6, "vendas": 11, "conv": 17.5}, {"label": "Estou *começando* na área", "count": 19, "pct": 18.3, "vendas": 3, "conv": 15.8}, {"label": "Estou apenas explorando o assunto", "count": 14, "pct": 13.5, "vendas": 2, "conv": 14.3}, {"label": "Outra área, mas quero transicionar", "count": 8, "pct": 7.7, "vendas": 1, "conv": 12.5}], "formacao": [{"label": "MBA/Pós-graduação/Mestrado/Doutorado", "count": 56, "pct": 53.8, "vendas": 11, "conv": 19.6}, {"label": "Ensino Superior Completo", "count": 28, "pct": 26.9, "vendas": 6, "conv": 21.4}, {"label": "Ensino Superior Incompleto", "count": 10, "pct": 9.6, "vendas": 0, "conv": 0.0}, {"label": "Ensino Médio Completo", "count": 8, "pct": 7.7, "vendas": 0, "conv": 0.0}, {"label": "Ensino Fundamental Completo", "count": 1, "pct": 1.0, "vendas": 0, "conv": 0.0}, {"label": "Curso técnico", "count": 1, "pct": 1.0, "vendas": 0, "conv": 0.0}], "profissao": [{"label": "Psicólogo(a)", "count": 24, "pct": 23.1}, {"label": "Terapeuta Integrativo", "count": 20, "pct": 19.2}, {"label": "Fisioterapeuta", "count": 9, "pct": 8.7}, {"label": "Psicanalista", "count": 8, "pct": 7.7}, {"label": "Professor", "count": 7, "pct": 6.7}, {"label": "Hipnoterapeuta", "count": 6, "pct": 5.8}, {"label": "Professor(a) de Yoga", "count": 4, "pct": 3.8}, {"label": "Educador físico", "count": 3, "pct": 2.9}, {"label": "Mentor(a)", "count": 2, "pct": 1.9}, {"label": "Empresário(a)", "count": 2, "pct": 1.9}, {"label": "Babá/ Bercarista", "count": 1, "pct": 1.0}, {"label": "Policial Penal", "count": 1, "pct": 1.0}, {"label": "Advogado", "count": 1, "pct": 1.0}, {"label": "Médico(a)", "count": 1, "pct": 1.0}, {"label": "Vendedor de açaí na praia", "count": 1, "pct": 1.0}, {"label": "Enfermeira, absurdo não ter na lista", "count": 1, "pct": 1.0}, {"label": "Nutricionista", "count": 1, "pct": 1.0}, {"label": "Analista Seguradora", "count": 1, "pct": 1.0}, {"label": "Psicologia Organizacional", "count": 1, "pct": 1.0}, {"label": "Técnico em eletrônica", "count": 1, "pct": 1.0}, {"label": "Terapeuta Holística", "count": 1, "pct": 1.0}, {"label": "Filosofa e escritora. Pós graduanda em neurociencia psicologia positiva e mindfulness", "count": 1, "pct": 1.0}, {"label": "Fonoaudiologa, especialista em voz e respiração", "count": 1, "pct": 1.0}, {"label": "Professorado Yoga", "count": 1, "pct": 1.0}, {"label": "Fonoaudióloga", "count": 1, "pct": 1.0}, {"label": "Farmacêutica", "count": 1, "pct": 1.0}, {"label": "assistente social", "count": 1, "pct": 1.0}, {"label": "Dentista", "count": 1, "pct": 1.0}, {"label": "Psicoterapeuta", "count": 1, "pct": 1.0}], "clientes_mes": [{"label": "Não estou atendendo.", "count": 39, "pct": 37.5, "vendas": 6, "conv": 15.4}, {"label": "Mais de 10", "count": 32, "pct": 30.8, "vendas": 5, "conv": 15.6}, {"label": "De 1 a 5", "count": 14, "pct": 13.5, "vendas": 1, "conv": 7.1}, {"label": "De 6 a 10", "count": 11, "pct": 10.6, "vendas": 4, "conv": 36.4}, {"label": "Não pretendo fazer atendimentos.", "count": 8, "pct": 7.7, "vendas": 1, "conv": 12.5}], "sessoes_assistidas": [{"label": "3 ou + sessões", "count": 76, "pct": 73.1, "vendas": 14, "conv": 18.4}, {"label": "2 sessões", "count": 18, "pct": 17.3, "vendas": 1, "conv": 5.6}, {"label": "Não assisti nada ainda.", "count": 7, "pct": 6.7, "vendas": 2, "conv": 28.6}, {"label": "1 sessão", "count": 3, "pct": 2.9, "vendas": 0, "conv": 0.0}], "idade": [{"label": "65+", "count": 30, "pct": 28.8, "vendas": 6, "conv": 20.0}, {"label": "46 - 55", "count": 25, "pct": 24.0, "vendas": 7, "conv": 28.0}, {"label": "56 - 65", "count": 25, "pct": 24.0, "vendas": 2, "conv": 8.0}, {"label": "36 - 45", "count": 17, "pct": 16.3, "vendas": 2, "conv": 11.8}, {"label": "26 - 35", "count": 6, "pct": 5.8, "vendas": 0, "conv": 0.0}, {"label": "18 - 25", "count": 1, "pct": 1.0, "vendas": 0, "conv": 0.0}], "renda_hoje": [{"label": "R$ 6.001 à R$ 10.000", "count": 33, "pct": 31.7, "vendas": 4, "conv": 12.1}, {"label": "Mais que R$ 10.000", "count": 30, "pct": 28.8, "vendas": 8, "conv": 26.7}, {"label": "R$ 4.001 à R$ 6.000", "count": 16, "pct": 15.4, "vendas": 2, "conv": 12.5}, {"label": "R$ 2.001 à R$ 4.000", "count": 14, "pct": 13.5, "vendas": 0, "conv": 0.0}, {"label": "Até R$ 2.000", "count": 11, "pct": 10.6, "vendas": 3, "conv": 27.3}], "programa_interesse": [{"label": "Formação em Breathwork e Neurociência.", "count": 37, "pct": 35.6, "vendas": 3, "conv": 8.1}, {"label": "Quero entender melhor as opções.", "count": 36, "pct": 34.6, "vendas": 7, "conv": 19.4}, {"label": "Pós-Graduação: Neurociência da Respiração.", "count": 28, "pct": 26.9, "vendas": 7, "conv": 25.0}, {"label": "Não busco nada agora.", "count": 3, "pct": 2.9, "vendas": 0, "conv": 0.0}], "bolsa_interesse": [{"label": "Tenho interesse, mas preciso avaliar melhor formas de pagamento.", "count": 53, "pct": 51.0, "vendas": 7, "conv": 13.2}, {"label": "Com certeza vou entrar nessa turma.", "count": 22, "pct": 21.2, "vendas": 7, "conv": 31.8}, {"label": "Quero muito entrar nessa turma, preciso entender melhor.", "count": 20, "pct": 19.2, "vendas": 3, "conv": 15.0}, {"label": "Esse não é meu momento para investir.", "count": 9, "pct": 8.7, "vendas": 0, "conv": 0.0}], "leads_por_dia": [{"date": "2026-09-03", "count": 77}, {"date": "2026-09-04", "count": 10}, {"date": "2026-09-05", "count": 17}]};
+
+function fmtBRL(n){
+  return 'R$ ' + n.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
+}
+function fmtInt(n){ return n.toLocaleString('pt-BR'); }
+function fmtPct(n){ return n.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1}) + '%'; }
+
+function convClass(pct){
+  if(pct === 0) return 'conv-zero';
+  if(pct >= 20) return 'conv-good';
+  if(pct >= 10) return 'conv-mid';
+  return 'conv-low';
+}
+
+/* ---------------- KPI ---------------- */
+const k = DATA.kpi;
+const kpis = [
+  {label:'Leads captados', value: fmtInt(k.total_leads), sub:'base total do lançamento', accent:true},
+  {label:'Taxa de agendamento', value: fmtPct(k.total_agend/k.total_leads*100), sub: fmtInt(k.total_agend)+' agendamentos'},
+  {label:'Taxa de comparecimento', value: fmtPct(k.total_compare/k.total_agend*100), sub: fmtInt(k.total_compare)+' compareceram · '+fmtInt(k.total_cancel)+' cancelaram'},
+  {label:'Conversão lead → venda', value: fmtPct(k.total_vendas/k.total_leads*100), sub: fmtInt(k.total_vendas)+' vendas fechadas'},
+  {label:'Faturamento total', value: fmtBRL(k.total_fat), sub:'bruto, 17 contratos'},
+  {label:'Ticket médio', value: fmtBRL(k.ticket_medio), sub:'por venda fechada'},
+];
+document.getElementById('kpiGrid').innerHTML = kpis.map(t => `
+  <div class="kpi-tile ${t.accent?'accent':''}">
+    <div class="kpi-label">${t.label}</div>
+    <div class="kpi-value num">${t.value}</div>
+    <div class="kpi-sub">${t.sub}</div>
+  </div>`).join('');
+
+/* ---------------- FUNNEL ---------------- */
+const stages = [
+  {label:'Leads', sub:'100% da base', count:k.total_leads, pctOfTop:100, color:'var(--series-1)'},
+  {label:'Agendamentos', sub: fmtPct(k.total_agend/k.total_leads*100)+' dos leads', count:k.total_agend, pctOfTop: k.total_agend/k.total_leads*100, color:'#2467bd'},
+  {label:'Compareceram', sub: fmtPct(k.total_compare/k.total_leads*100)+' dos leads', count:k.total_compare, pctOfTop: k.total_compare/k.total_leads*100, color:'#1c5cab'},
+  {label:'Vendas', sub: fmtPct(k.total_vendas/k.total_leads*100)+' dos leads', count:k.total_vendas, pctOfTop: k.total_vendas/k.total_leads*100, color:'var(--accent)'},
+];
+let funnelHtml = '';
+stages.forEach((s,i)=>{
+  funnelHtml += `
+    <div class="fstage">
+      <div class="flabel">${s.label}<small>${s.sub}</small></div>
+      <div class="ftrack"><div class="ffill" style="width:${Math.max(s.pctOfTop,6)}%; background:${s.color};">${fmtInt(s.count)}</div></div>
+      <div class="fnums"><div class="cnt num">${fmtInt(s.count)}</div><div class="pct">${fmtPct(s.pctOfTop)} do total</div></div>
+    </div>`;
+  if(i < stages.length-1){
+    const next = stages[i+1];
+    const dropPct = 100 - (next.count/s.count*100);
+    funnelHtml += `<div class="fdrop">↓ <span class="tag">${fmtPct(dropPct)}</span> de perda até "${next.label}" &nbsp;·&nbsp; ${fmtInt(s.count-next.count)} leads</div>`;
+  }
+});
+document.getElementById('funnel').innerHTML = funnelHtml;
+
+/* ---------------- FAIXA ETÁRIA ---------------- */
+const idadeRows = [...DATA.idade]; // already sorted by count desc from source
+const maxConvIdade = Math.max(...idadeRows.map(r=>r.conv), 1);
+document.getElementById('idadeTable').innerHTML = `
+  <thead><tr>
+    <th>Faixa etária</th><th class="num-col">Leads</th><th class="num-col">% da base</th>
+    <th class="num-col">Vendas</th><th>Taxa de conversão</th>
+  </tr></thead>
+  <tbody>
+  ${idadeRows.map(r=>`
+    <tr>
+      <td class="name">${r.label}</td>
+      <td class="num-col num">${fmtInt(r.count)}</td>
+      <td class="num-col num">${fmtPct(r.pct)}</td>
+      <td class="num-col num">${r.vendas}</td>
+      <td><span class="mini-track"><span class="mini-fill" style="width:${r.conv/maxConvIdade*100}%; background:${r.conv>=20?'var(--good)':r.conv>=10?'var(--series-1)':r.conv>0?'var(--warning)':'var(--critical)'};"></span></span><span class="num" style="font-weight:600;">${fmtPct(r.conv)}</span></td>
+    </tr>`).join('')}
+  </tbody>`;
+
+const best = idadeRows.reduce((a,b)=> b.conv>a.conv ? b : a, idadeRows[0]);
+const sameSizeLow = idadeRows.filter(r=>r.label!==best.label).reduce((a,b)=> (Math.abs(b.count-best.count)<Math.abs(a.count-best.count) && b.conv<best.conv) ? b : a, {count:-999, conv:999});
+document.getElementById('idadeInsight').innerHTML = `
+  <div class="kpi-label" style="text-transform:uppercase; letter-spacing:.05em; font-size:11px;">Leitura do closer</div>
+  <div style="font-size:13.5px; color:var(--text-primary); line-height:1.6;">
+    A faixa <b>${best.label} anos</b> tem só ${fmtPct(best.pct)} da base, mas concentra a maior conversão
+    (<b>${fmtPct(best.conv)}</b>) e ${best.vendas} das 17 vendas — praticamente empatada em volume de vendas com a faixa 65+, que tem
+    ${idadeRows[0].label==='65+' ? fmtInt(idadeRows[0].count-best.count) : ''} leads a mais.
+  </div>
+  <div style="font-size:13.5px; color:var(--text-secondary); line-height:1.6;">
+    Já a faixa <b>56&nbsp;–&nbsp;65</b> tem exatamente o mesmo tamanho de base que a 46&nbsp;–&nbsp;55 (25 leads cada),
+    mas converte <b style="color:var(--critical);">3,5× menos</b> (8,0% vs 28,0%) — candidata natural a uma
+    revisão de abordagem ou de oferta pelo time comercial.
+  </div>
+  <div style="font-size:12.5px; color:var(--text-muted);">Abaixo de 36 anos: 7 leads, 0 vendas.</div>
+`;
+
+/* ---------------- CLOSER TABLE ---------------- */
+const closerRows = [...DATA.closer].sort((a,b)=>b.receita-a.receita);
+const maxConvCloser = Math.max(...closerRows.map(r=>r.taxa_conv));
+document.getElementById('closerTable').innerHTML = `
+  <thead><tr>
+    <th>Closer</th><th class="num-col">Agend.</th><th class="num-col">Cancel.</th>
+    <th class="num-col">Vendas</th><th>Taxa conversão</th><th class="num-col">Receita</th>
+  </tr></thead>
+  <tbody>
+  ${closerRows.map(r=>`
+    <tr>
+      <td class="name">${r.Closer_f}</td>
+      <td class="num-col num">${r.agendamentos}</td>
+      <td class="num-col num">${r.cancelamentos} <span style="color:var(--text-muted);font-size:11px;">(${fmtPct(r.taxa_cancel)})</span></td>
+      <td class="num-col num">${r.vendas}</td>
+      <td><span class="mini-track"><span class="mini-fill" style="width:${r.taxa_conv/maxConvCloser*100}%; background:${r.taxa_conv>=25?'var(--good)':r.taxa_conv>=10?'var(--series-1)':'var(--critical)'};"></span></span><span class="num" style="font-weight:600;">${fmtPct(r.taxa_conv)}</span></td>
+      <td class="num-col num" style="color:var(--text-primary);font-weight:600;">${fmtBRL(r.receita)}</td>
+    </tr>`).join('')}
+  </tbody>`;
+
+/* ---------------- ORIGEM TABLE ---------------- */
+const origemRows = [...DATA.origem].sort((a,b)=>b.leads-a.leads);
+const maxConvOrigem = Math.max(...origemRows.map(r=>r.taxa_conv));
+document.getElementById('origemTable').innerHTML = `
+  <thead><tr>
+    <th>UTM Source</th><th class="num-col">Leads</th><th class="num-col">Agend.</th>
+    <th class="num-col">Vendas</th><th>Conversão</th><th class="num-col">Receita</th>
+  </tr></thead>
+  <tbody>
+  ${origemRows.map(r=>`
+    <tr>
+      <td class="name" style="font-size:11.8px;">${r.utm_source}</td>
+      <td class="num-col num">${r.leads}</td>
+      <td class="num-col num">${r.agendamentos} <span style="color:var(--text-muted);font-size:11px;">(${fmtPct(r.taxa_agend)})</span></td>
+      <td class="num-col num">${r.vendas}</td>
+      <td><span class="mini-track"><span class="mini-fill" style="width:${r.taxa_conv/maxConvOrigem*100}%; background:${r.taxa_conv>=25?'var(--good)':r.taxa_conv>=10?'var(--series-1)':'var(--critical)'};"></span></span><span class="num" style="font-weight:600;">${fmtPct(r.taxa_conv)}</span></td>
+      <td class="num-col num" style="color:var(--text-primary);font-weight:600;">${fmtBRL(r.receita)}</td>
+    </tr>`).join('')}
+  </tbody>`;
+
+/* ---------------- Generic bar list ---------------- */
+function renderBarList(elId, items, opts={}){
+  const max = Math.max(...items.map(d=>d.pct));
+  const withConv = !!opts.showConv;
+  document.getElementById(elId).innerHTML = items.map(d => `
+    <div>
+      <div class="barrow-top">
+        <span class="barrow-label">${d.label}</span>
+        <span class="barrow-value num">${fmtInt(d.count)} · ${fmtPct(d.pct)}</span>
+      </div>
+      <div class="barrow-track"><div class="barrow-fill" style="width:${d.pct/max*100}%; background:${opts.color||'var(--series-1)'};"></div></div>
+      ${withConv ? `<div class="barrow-foot"><span class="conv-badge ${convClass(d.conv)}">conversão ${fmtPct(d.conv)} (${d.vendas} venda${d.vendas===1?'':'s'})</span></div>` : ''}
+    </div>`).join('');
+}
+
+renderBarList('constatacaoList', DATA.constatacao, {color:'var(--series-3)'});
+renderBarList('motivoList', DATA.pq_nao_agendou, {color:'var(--series-2)'});
+renderBarList('vendaTipoList', DATA.venda_tipo, {color:'var(--accent)'});
+renderBarList('formaPagtoList', DATA.forma_pagto, {color:'var(--series-4)'});
+
+/* profissão: top 8 + outras */
+const profOrdered = [...DATA.profissao].sort((a,b)=>b.count-a.count);
+const topProf = profOrdered.slice(0,8);
+const rest = profOrdered.slice(8);
+const restCount = rest.reduce((s,d)=>s+d.count,0);
+const restPct = rest.reduce((s,d)=>s+d.pct,0);
+const profFinal = [...topProf, {label:`Outras profissões (${rest.length} categorias)`, count:restCount, pct:Math.round(restPct*10)/10}];
+renderBarList('profissaoList', profFinal, {color:'var(--series-1)'});
+
+/* timeline */
+const tlItems = DATA.leads_por_dia.map(d => ({label:d.date, count:d.count, pct: d.count/DATA.leads_por_dia.reduce((s,x)=>s+x.count,0)*100}));
+renderBarList('timelineList', tlItems, {color:'var(--series-1)'});
+
+/* ---------------- Perfil do lead grid ---------------- */
+const perfilBlocks = [
+  {title:'Já atua na área da saúde/bem-estar?', data: DATA.area_saude},
+  {title:'Nível de formação acadêmica', data: DATA.formacao},
+  {title:'Nº de clientes atendidos por mês', data: DATA.clientes_mes},
+  {title:'Sessões do Desafio assistidas', data: DATA.sessoes_assistidas},
+  {title:'Renda atual por mês', data: DATA.renda_hoje},
+  {title:'Programa de maior interesse', data: DATA.programa_interesse},
+  {title:'Interesse na Bolsa de até 50%', data: DATA.bolsa_interesse},
+];
+document.getElementById('perfilGrid').innerHTML = perfilBlocks.map((b,i)=>`
+  <div class="card">
+    <h3 style="font-size:13px;margin-bottom:12px;color:var(--text-secondary);">${b.title}</h3>
+    <div class="barlist" id="perfil_${i}"></div>
+  </div>`).join('');
+perfilBlocks.forEach((b,i)=> renderBarList('perfil_'+i, b.data, {showConv:true, color:'var(--series-1)'}));
+
+/* ---------------- LEAD SCORING WEIGHTS (vertical column chart) ---------------- */
+const scoreWeights = [
+  {dim:'Elegibilidade acadêmica', short:'Elegibilidade acadêmica', pts:40, color:'var(--series-1)'},
+  {dim:'Momento de compra', short:'Momento de compra', pts:15, color:'var(--series-2)'},
+  {dim:'Capacidade de investimento', short:'Capacidade de investimento', pts:15, color:'var(--series-3)'},
+  {dim:'Atuação e aplicação profissional', short:'Atuação profissional', pts:10, color:'var(--series-4)'},
+  {dim:'Engajamento real no desafio', short:'Engajamento no desafio', pts:10, color:'var(--series-5)'},
+  {dim:'Clareza de objetivo', short:'Clareza de objetivo', pts:5, color:'var(--series-6)'},
+  {dim:'Autoridade/audiência/potencial de expansão', short:'Autoridade / audiência', pts:5, color:'var(--series-7)'},
+];
+const scoreScaleMax = 40;
+document.getElementById('scoreVBars').innerHTML = scoreWeights.map((d,i) => `
+  <div class="vbar-col">
+    <div class="vbar-cap">${d.pts}</div>
+    <div class="vbar-fill" style="height:${d.pts/scoreScaleMax*100}%; background:${d.color};"></div>
+    <div class="vbar-label">${d.short}</div>
+    <div class="vbar-idx">${i+1}</div>
+  </div>`).join('');
+document.getElementById('scoreLegend').innerHTML = scoreWeights.map((d,i) => `
+  <div class="item"><span class="idx">${i+1}</span><span class="dot" style="background:${d.color};"></span>${d.dim} <b>${d.pts} pts</b></div>`).join('')
+  + `<div class="item"><span class="dot" style="background:var(--text-primary);"></span>Total <b>100 pts</b></div>`;
+
+/* ---------------- AUDITORIA: KPI strip ---------------- */
+const audKpis = [
+  {label:'Taxa de agendamento', value: fmtPct(k.total_agend/k.total_leads*100), sub: fmtInt(k.total_agend)+' de '+fmtInt(k.total_leads)+' leads', accent:true},
+  {label:'Taxa de comparecimento', value: fmtPct(k.total_compare/k.total_agend*100), sub: fmtInt(k.total_compare)+' de '+fmtInt(k.total_agend)+' agendados'},
+  {label:'Taxa de cancelamento', value: fmtPct(k.total_cancel/k.total_agend*100), sub: fmtInt(k.total_cancel)+' reuniões perdidas'},
+  {label:'Conversão lead → venda', value: fmtPct(k.total_vendas/k.total_leads*100), sub: fmtInt(k.total_vendas)+' vendas fechadas'},
+  {label:'Cash recebido', value: fmtPct(k.total_cash/k.total_fat*100), sub: fmtBRL(k.total_cash)+' de '+fmtBRL(k.total_fat)},
+  {label:'Sem classificação de lead', value: '49,0%', sub:'51 de 104 leads sem "Constatação"'},
+];
+document.getElementById('audKpiGrid').innerHTML = audKpis.map(t => `
+  <div class="kpi-tile ${t.accent?'accent':''}">
+    <div class="kpi-label">${t.label}</div>
+    <div class="kpi-value num">${t.value}</div>
+    <div class="kpi-sub">${t.sub}</div>
+  </div>`).join('');
+
+/* ---------------- AUDITORIA: visual funnel (6 measured stages) ---------------- */
+const audStages = [
+  {label:'Leads captados', sub:'etapa 3', count:k.total_leads, pctOfTop:100, color:'var(--series-1)'},
+  {label:'Agendamentos', sub:'etapa 6', count:k.total_agend, pctOfTop:k.total_agend/k.total_leads*100, color:'#2467bd'},
+  {label:'Compareceram', sub:'etapa 9', count:k.total_compare, pctOfTop:k.total_compare/k.total_leads*100, color:'#1c5cab'},
+  {label:'Vendas', sub:'etapa 13', count:k.total_vendas, pctOfTop:k.total_vendas/k.total_leads*100, color:'var(--accent)'},
+];
+let audFunnelHtml = '';
+audStages.forEach((s,i)=>{
+  audFunnelHtml += `
+    <div class="fstage">
+      <div class="flabel">${s.label}<small>${s.sub}</small></div>
+      <div class="ftrack"><div class="ffill" style="width:${Math.max(s.pctOfTop,6)}%; background:${s.color};">${fmtInt(s.count)}</div></div>
+      <div class="fnums"><div class="cnt num">${fmtInt(s.count)}</div><div class="pct">${fmtPct(s.pctOfTop)} do total</div></div>
+    </div>`;
+  if(i < audStages.length-1){
+    const next = audStages[i+1];
+    const dropPct = 100 - (next.count/s.count*100);
+    audFunnelHtml += `<div class="fdrop">↓ <span class="tag">${fmtPct(dropPct)}</span> de perda até "${next.label}" &nbsp;·&nbsp; ${fmtInt(s.count-next.count)} leads</div>`;
+  }
+});
+document.getElementById('audFunnel').innerHTML = audFunnelHtml;
+
+/* ---------------- AUDITORIA: closer + origem bars ---------------- */
+const audCloserAgend = DATA.closer.map(c => ({label:c.Closer_f, count:c.agendamentos, pct:c.agendamentos, conv:c.taxa_conv, vendas:c.vendas}));
+renderBarList('audCloserBars', audCloserAgend, {color:'var(--series-1)', showConv:true});
+
+const maxReceita = Math.max(...DATA.closer.map(c=>c.receita));
+const audCloserRev = DATA.closer.map(c => ({label:c.Closer_f, count:c.receita, pct:c.receita/maxReceita*100, conv:c.taxa_conv, vendas:c.vendas}));
+document.getElementById('audCloserRevBars').innerHTML = audCloserRev.map(d => `
+  <div>
+    <div class="barrow-top"><span class="barrow-label">${d.label}</span><span class="barrow-value num">${fmtBRL(d.count)}</span></div>
+    <div class="barrow-track"><div class="barrow-fill" style="width:${d.pct}%; background:var(--accent);"></div></div>
+  </div>`).join('');
+
+const audOrigemBars = DATA.origem.map(o => ({label:o.utm_source, count:o.leads, pct:o.leads, conv:o.taxa_conv, vendas:o.vendas}));
+renderBarList('audOrigemBars', audOrigemBars, {color:'var(--series-4)', showConv:true});
+
+/* ---------------- TABS ---------------- */
+(function(){
+  const tabs = [
+    {btn:'tabbtn-painel', panel:'tab-painel'},
+    {btn:'tabbtn-metodologia', panel:'tab-metodologia'},
+    {btn:'tabbtn-diagnostico', panel:'tab-diagnostico'},
+    {btn:'tabbtn-auditoria', panel:'tab-auditoria'},
+  ];
+  function activate(name){
+    tabs.forEach(t=>{
+      const isActive = t.btn === name;
+      document.getElementById(t.btn).classList.toggle('active', isActive);
+      document.getElementById(t.btn).setAttribute('aria-selected', isActive ? 'true':'false');
+      document.getElementById(t.panel).hidden = !isActive;
+    });
+  }
+  tabs.forEach(t=>{
+    document.getElementById(t.btn).addEventListener('click', ()=> activate(t.btn));
+  });
+})();
+</script>
